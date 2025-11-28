@@ -2,7 +2,8 @@
 
 import React, { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
-import html2pdf from "html2pdf.js";
+import jsPDF from "jspdf";
+// import html2canvas from 'html2canvas-pro';
 
 interface TermsPrivacyDialogProps {
     open: boolean;
@@ -51,22 +52,37 @@ const TermsPrivacyDialog: React.FC<TermsPrivacyDialogProps> = ({
         };
     }, [open, onClose]);
 
-    const handleDownload = () => {
-        const dialog = dialogRef.current;
-        if (!dialog) return;
-        const element = dialog.querySelector(".doc-content") as HTMLElement;
-        if (!element) return;
+    const handleDownload = async () => {
+        const contentHtml = content || "<p>No content</p>";
 
-        html2pdf()
-            .from(element)
-            .set({
-                margin: 0.5,
-                filename: `${docType}.pdf`,
-                image: { type: "jpeg", quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-            })
-            .save();
+        // Create a temporary container to render the HTML
+        const tempDiv = document.createElement("div");
+        tempDiv.style.background = "white";
+        tempDiv.style.color = "black";
+        tempDiv.style.padding = "20px";
+        tempDiv.style.fontFamily = "Arial, sans-serif";
+        tempDiv.innerHTML = contentHtml;
+
+        document.body.appendChild(tempDiv);
+
+        // Import html2canvas-pro dynamically (client-only)
+        const html2canvas = (await import("html2canvas-pro")).default;
+
+        const canvas = await html2canvas(tempDiv, {
+            scale: 2,           // higher resolution
+            useCORS: true,      // in case you have images
+        });
+
+        document.body.removeChild(tempDiv);
+        const imgData = canvas.toDataURL("image/png");
+
+    // Generate PDF
+        const pdf = new jsPDF("p", "pt", "a4"); // portrait, points, A4
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+        pdf.save(`${docType}.pdf`);
     };
 
     if (!open) return null;

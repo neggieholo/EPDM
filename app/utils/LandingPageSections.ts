@@ -31,12 +31,8 @@ export const industrySections = [
     },
     {
         title: "Industry Awards",
-        content: `We recognize and celebrate organizations that are making significant data-driven impacts in the energy sector, including:
-        - Gas flare reduction and carbon emissions leadership
-        - Oil & gas production efficiency and technology innovation
-        - Environmental protection and sustainability excellence
-        - Renewable energy innovation and energy transition leadership
-        - Outstanding project execution, safety, and local content development`,
+        content: `Data-Driven Energy Excellence Awards. Recognizing and celebrating organizations that are making significant impacts in the energy sector through data-driven innovation, sustainability, and contributions to achieving government's targets. 
+        Our awards categories showcase outstanding achievements in various areas of the energy industry, with winners selected based on robust data and metrics`,
     },
     {
         title: "Industry Challenge",

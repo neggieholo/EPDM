@@ -10,7 +10,11 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "dom-to-image": "^2.6.0",
+    "html2canvas": "^1.4.1",
+    "html2canvas-pro": "^1.5.13",
     "html2pdf.js": "^0.12.1",
+    "jspdf": "^3.0.4",
     "libphonenumber-js": "^1.12.26",
     "localforage": "^1.10.0",
     "lucide-react": "^0.553.0",

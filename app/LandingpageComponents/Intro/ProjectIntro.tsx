@@ -19,7 +19,7 @@ const ProjectIntro = () => {
                 A Real-Time Digital Platform
               </h3>
               <p className="text-white p-3" style={{ fontSize: '1em' }}>
-                EPDM tracks thousands of energy projects and provides real-time, accurate, and reliable resources for companies seeking new business opportunities, analytics and up-to-date industry insights. EPDM delivers the latest information on planned, ongoing, and future energy projects to empower your success.
+                EPDM tracks thousands of energy projects and provides real-time, accurate, and reliable resources for companies seeking new business opportunities, analytics, intelligence, and up-to-date industry insights. EPDM delivers the latest information on planned, ongoing, and future energy projects to empower your success.
               </p>
             </div>
             <div className='bg-primary h-fit text-white shadow-right shadow-md p-1'>

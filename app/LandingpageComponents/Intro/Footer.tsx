@@ -1,5 +1,5 @@
 import React from "react";
-import { FaFacebook, FaInstagram, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { FaFacebook, FaInstagram, FaLinkedin, FaXTwitter, FaYoutube, FaTiktok } from "react-icons/fa6";
 import { getSocialLinks } from "../../utils/MiscFectchers";
 import { fetchDocuments } from "@/app/utils/SignUpFetchers";
 import LegalDocBtn from "../legalDocBtn";
@@ -61,6 +61,26 @@ const Footer = async () => {
                                 className="hover:text-pink-400 transition"
                             >
                                 <FaInstagram className="w-6 h-6" />
+                            </a>
+                        )}
+                        {socialLinks.youtube && (
+                            <a
+                                href={socialLinks.youtube}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-red-600 transition"
+                            >
+                                <FaYoutube className="w-6 h-6" />
+                            </a>
+                        )}
+                        {socialLinks.tiktok && (
+                            <a
+                                href={socialLinks.tiktok}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-black transition"
+                            >
+                                <FaTiktok className="w-6 h-6" />
                             </a>
                         )}
                     </div>

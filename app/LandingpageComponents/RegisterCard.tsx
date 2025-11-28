@@ -4,12 +4,13 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-import { E164Number, isValidPhoneNumber } from "libphonenumber-js";
+import { E164Number } from "libphonenumber-js";
 import {
     submitRegistration,
     fetchDocuments,
 } from "../utils/SignUpFetchers";
 import { validateFields } from "../utils/LandingPageFetchers";
+import LegalDocBtn from "./legalDocBtn";
 // import TermsPrivacyDialog from "./TermsPrivacyDialog";
 
 const RegisterCard: React.FC = () => {
@@ -40,8 +41,6 @@ const RegisterCard: React.FC = () => {
     // Dialogs
     const [termsContent, setTermsContent] = useState("");
     const [privacyContent, setPrivacyContent] = useState("");
-    const [showTerms, setShowTerms] = useState(false);
-    const [showPrivacy, setShowPrivacy] = useState(false);
 
    
     // Load terms & privacy
@@ -115,7 +114,7 @@ const RegisterCard: React.FC = () => {
                 toast.error(result.message || "Registration failed.");
             }
         } catch (err) {
-            toast.error("Unable to connect to server.");
+            toast.error(`Unable to connect to server: ${err}`);
         } finally {
             setIsLoading(false);
         }
@@ -267,23 +266,13 @@ const RegisterCard: React.FC = () => {
                         <label className="text-sm flex items-center gap-2">
                             <input type="checkbox" required />
                             I agree to the{" "}
-                            <span
-                                onClick={() => setShowTerms(true)}
-                                className="text-accent underline cursor-pointer"
-                            >
-                                Terms and Conditions
-                            </span>
+                            <LegalDocBtn docType="terms" content={termsContent} />
                         </label>
 
                         <label className="text-sm flex items-center gap-2">
                             <input type="checkbox" required />
                             I agree to the{" "}
-                            <span
-                                onClick={() => setShowPrivacy(true)}
-                                className="text-accent underline cursor-pointer"
-                            >
-                                Privacy and Cookie Policy
-                            </span>
+                            <LegalDocBtn docType="privacy" content={privacyContent} />
                         </label>
                     </div>
 
