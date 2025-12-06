@@ -4,7 +4,7 @@ import ProjectIntro from './Intro/ProjectIntro';
 import Services from './Intro/ServicesIntro';
 import NewsIntro from './Intro/pressReleaseIntro';
 import AboutUsIntro from './Intro/AboutUsIntro';
-import Footer from './Intro/Footer';
+import AdvertiseSection from './Intro/AdvertiseSection';
 import IndustryIntro from './Intro/IndustryIntro';
 
 const LandingPage = () => {
@@ -16,6 +16,7 @@ const LandingPage = () => {
             <NewsIntro />
             <IndustryIntro />
             <AboutUsIntro />
+            <AdvertiseSection />
         </div>
     )
 }

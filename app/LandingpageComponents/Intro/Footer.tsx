@@ -70,7 +70,7 @@ const Footer = async () => {
                                 rel="noopener noreferrer"
                                 className="hover:text-red-600 transition"
                             >
-                                <FaYoutube className="w-6 h-6" />
+                                <FaYoutube className="w-6 h-6 text-red-600 hover:text-red-700 transition" />
                             </a>
                         )}
                         {socialLinks.tiktok && (

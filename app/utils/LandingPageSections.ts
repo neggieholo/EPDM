@@ -22,8 +22,8 @@ export const industrySections = [
         content: `We provide in-depth analysis, data, and insights about the energy industry.`,
     },
     {
-        title: "Industry Data",
-        content: `We provide statistical information and facts about the energy industry to help businesses, researchers, and policymakers make informed decisions.`,
+        title: "Energy Data",
+        content: `Statistical information and facts about Nigeria's energy industry, helping businesses, researchers, and policymakers make informed decisions.`,
     },
     {
         title: "Industry Data",

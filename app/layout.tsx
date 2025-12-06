@@ -6,6 +6,7 @@ import ToastProvider from "./utils/ToastProvider";
 import CookieConsentBanner from "./CookieConsentBanner";
 import { isMobile } from "./utils/IsMobile";
 import MobCookieConsentBanner from "./MobConsentBanner";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,18 @@ export default async function RootLayout({children,}: Readonly<{children: React.
     
     return (
       <html lang="en" data-theme='epdm' >
+        <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-KWMBQGXNCZ"
+        strategy="afterInteractive"
+      />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-KWMBQGXNCZ');
+          `}
+        </Script>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
         >

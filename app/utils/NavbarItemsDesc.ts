@@ -20,9 +20,9 @@ export const industryResourcesItems = [
         href: "/industry-resources/industry-reports",
     },
     {
-        heading: "Industry Data",
+        heading: "Energy Data",
         description: "Statistical information and facts about the energy industry",
-        href: "/industry-resources/industry-data",
+        href: "/industry-resources/energy-data",
     },
     {
         heading: "Industry Awards",
