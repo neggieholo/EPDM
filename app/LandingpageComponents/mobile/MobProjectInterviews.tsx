@@ -44,8 +44,8 @@ const MobProjectInterviews: React.FC<ProjectInterviewsProps> = ({ interviews }) 
     return (
         <section className="bg-white w-full px-5 py-10">
             <div className="flex flex-col md:flex-row h-auto md:h-auto pt-10 md:pt-25">
-                {/* LEFT: Header */}
-                <div className="w-full md:w-[30%] flex items-center justify-center p-4 mb-6 md:mb-0">
+                {/* header */}
+                <div className="w-full flex items-center justify-center p-4 mb-6 md:mb-0">
                     <div className="flex flex-col justify-evenly bg-primary items-center text-center shadow-strong h-auto md:h-[80%] py-8 px-5">
                         <h2 className="text-4xl font-extrabold text-white leading-tight">
                             PRESS

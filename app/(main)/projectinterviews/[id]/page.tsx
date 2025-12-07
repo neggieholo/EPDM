@@ -1,8 +1,6 @@
 import React from "react";
 import { headers } from "next/headers";
 import { isMobile } from "@/app/utils/IsMobile";
-import NewsDisplay from "@/app/LandingpageComponents/PressReleaseDisplay";
-import MobNewsDisplay from "@/app/LandingpageComponents/mobile/MobPressReleaseDisplay";
 import InterviewDisplay from "@/app/LandingpageComponents/ProjectInterviewDisplay";
 import MobInterviewDisplay from "@/app/LandingpageComponents/mobile/MobProjectInterviewDisplay";
 

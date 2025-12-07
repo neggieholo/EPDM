@@ -5,9 +5,9 @@ export const industryResourcesItems = [
         href: "/industrynews",
     },
     {
-        heading: "Industry Local Content Achievements",
+        heading: "Local Content Achievements",
         description: "Showcasing local content achievements of operators and service companies.",
-        href: "/industry-resources/local-content",
+        href: "/localcontents",
     },
     {
         heading: "Project Interviews",
@@ -17,22 +17,22 @@ export const industryResourcesItems = [
     {
         heading: "Industry Reports",
         description: "In-depth analysis, data, and insights about the energy industry.",
-        href: "/industry-resources/industry-reports",
+        href: "/industryreports",
     },
     {
         heading: "Energy Data",
         description: "Statistical information and facts about the energy industry",
-        href: "/industry-resources/energy-data",
+        href: "/energydata",
     },
     {
         heading: "Industry Awards",
         description: "Data-Driven Energy Excellence Awards.",
-        href: "/industry-resources/industry-awards",
+        href: "/industryawards",
     },
     {
         heading: "Energy Challenge",
         description: "Energy Challenge Competition for Universities.",
-        href: "/industry-resources/industry-challenge",
+        href: "/industrychallenge",
     },
 ];
 export const settingsItems = [

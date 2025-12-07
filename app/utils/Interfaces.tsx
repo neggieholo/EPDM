@@ -134,3 +134,12 @@ export interface DisplayProject {
     "Updated At"?: string;
     viewCount?: number; // optional, added if you track views
 }
+
+// types/EnergyData.ts
+export interface EnergySubsection {
+  id: number;
+  title: string;
+  details: string[];
+  url?: string;
+  benefits: string;
+}

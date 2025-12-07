@@ -1,5 +1,5 @@
 import React from 'react'
-import Footer from '../Intro/Footer';
+import AdverTiseSectionMobile from '../Intro/Mobile/AdverTiseSectionMobile';
 import MobHero from '../Intro/Mobile/MobHero';
 import MobProjectIntro from '../Intro/Mobile/MobProjectIntro';
 import MobServicesIntro from '../Intro/Mobile/MobServicesIntro';
@@ -16,6 +16,7 @@ const MobLandingPage = () => {
             <MobNewsIntro />
             <MobIndustryIntro />
             <MobAboutUsIntro />
+            <AdverTiseSectionMobile />
         </div>
     )
 }
