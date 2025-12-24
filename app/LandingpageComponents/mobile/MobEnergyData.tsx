@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { EnergySubsection } from "@/app/utils/Interfaces";
+import { ExternalLink } from "lucide-react";
 
 export default function EnergyDataMobile({ data }: { data: EnergySubsection[] }) {
   const [expandedId, setExpandedId] = useState<number | null>(null);
@@ -33,7 +34,7 @@ export default function EnergyDataMobile({ data }: { data: EnergySubsection[] })
                 <h3 className="text-md font-semibold mb-2">Details:</h3>
                 <ul className="list-disc pl-5 space-y-1 mb-4">
                     {item.id === 19 && item.url ? (
-                    <li>
+                    <li className="flex">
                         <a
                         href={item.url}
                         target="_blank"
@@ -42,6 +43,7 @@ export default function EnergyDataMobile({ data }: { data: EnergySubsection[] })
                         >
                         {item.details}
                         </a>
+                        <ExternalLink size={16} />
                     </li>
                     ) : (
                     item.details.map((d, idx) => <li key={idx}>{d}</li>)

@@ -18,12 +18,12 @@ const ProjectIntro = () => {
               <h3 className="font-semibold px-2 text-base-300 rounded-sm w-fit" style={{ fontSize: '1.2em' }}>
                 A Real-Time Digital Platform
               </h3>
-              <p className="text-white p-3" style={{ fontSize: '1em' }}>
+              <p className="text-white p-3" style={{ fontSize: '1.4em' }}>
                 EPDM tracks thousands of energy projects and provides real-time, accurate, and reliable resources for companies seeking new business opportunities, analytics, intelligence, and up-to-date industry insights. EPDM delivers the latest information on planned, ongoing, and future energy projects to empower your success.
               </p>
             </div>
             <div className='bg-primary h-fit text-white shadow-right shadow-md p-1'>
-              <h5 className="font-extrabold mb-4 border-b border-base-300 pb-2" style={{ fontSize: '1.5em' }}>
+              <h5 className="font-extrabold mb-4 border-b border-base-300 pb-2" style={{ fontSize: '1.4em' }}>
                 OIL AND GAS PROJECTS
               </h5>
               <ul className="space-y-3 list-disc list-inside">

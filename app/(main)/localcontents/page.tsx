@@ -16,7 +16,6 @@ export default async function Page() {
     let localcontents = null;
     if (res.ok) {
         const data = await res.json();
-        console.log('localcontents:', data)
         localcontents = data.localcontents;
     }
 

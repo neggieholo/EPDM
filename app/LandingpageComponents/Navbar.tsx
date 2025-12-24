@@ -60,7 +60,7 @@ export default function Navbar({ zIndex = 50, disabled = false }: NavbarProps) {
                     {NavbarSections.map((s) => (
                         <a
                             key={s.name}
-                            href={s.href}
+                            {...(!s.dropdown && { href: s.href })}
                             onMouseEnter={() => s.dropdown && setDropdownOpen(true)}
                             onMouseLeave={() => s.dropdown && setDropdownOpen(false)}
                             className="text-sm md:text-base text-primary font-medium px-3 py-2 rounded-md 

@@ -23,11 +23,7 @@ export const industrySections = [
     },
     {
         title: "Energy Data",
-        content: `Statistical information and facts about Nigeria's energy industry, helping businesses, researchers, and policymakers make informed decisions.`,
-    },
-    {
-        title: "Industry Data",
-        content: `We provide statistical information and facts about the energy industry to help businesses, researchers, and policymakers make informed decisions.`,
+        content: `We deliver statistical information and facts about Nigeria's energy industry, helping businesses, researchers, and policymakers make informed decisions.`,
     },
     {
         title: "Industry Awards",
@@ -35,7 +31,7 @@ export const industrySections = [
         Our awards categories showcase outstanding achievements in various areas of the energy industry, with winners selected based on robust data and metrics`,
     },
     {
-        title: "Industry Challenge",
+        title: "Energy Challenge (Industry -Based Quiz Competition)",
         content: `We organize the Nigeria Energy Challenge Competition for university students to:
         - Build capacity for future energy leaders
         - Promote industry-based learning and innovation
@@ -52,7 +48,7 @@ export const NavbarSections = [
         { name: "OUR TEAM", href: "/ourteam" },
         { name: "OUR PARTNERS", href: "/partners" },
         { name: "PRESS RELEASE", href: "/pressreleases" },
-        { name: "INDUSTRY RESOURCES", href: "/industry-resources", dropdown: true },
+        { name: "INDUSTRY RESOURCES", href: "javascript:void(0)", dropdown: true },
 ];
     
 export const HomeNavbarSections = [    

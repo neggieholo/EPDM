@@ -6,7 +6,7 @@ import { industrySections } from '../../utils/LandingPageSections'
 const IndustryIntro = () => {
     const [activeIndex, setActiveIndex] = useState(0);
     return (
-        <section className="w-full h-[65vh] bg-white shadow-md rounded-lg flex flex-col overflow-y-hidden border border-accent/20">
+        <section className="w-full h-fit bg-white shadow-md rounded-lg flex flex-col overflow-y-hidden border border-accent/20">
             <div className='w-full bg-accent/20 h-full'>
                 <div className="w-[70%] h-full mx-auto bg-white flex flex-col justify-center p-5">
                     <h2 className="text-2xl md:text-3xl font-bold text-primary mb-2 border-b border-accent pb-2">
@@ -17,7 +17,7 @@ const IndustryIntro = () => {
                     </p>
                     <div className="flex h-full">
                         {/* LEFT SIDE - Titles */}
-                        <div className="w-1/3 bg-primary/20 flex flex-col justify-center items-stretch">
+                        <div className="w-1/3 bg-primary/20 flex flex-col items-stretch overflow-y-auto">
                             {industrySections.map((s, i) => (
                                 <button
                                     key={i}
@@ -26,7 +26,7 @@ const IndustryIntro = () => {
                                     ${activeIndex === i ? "bg-primary" : "bg-primary/70 hover:bg-primary"}
                                     [clip-path:polygon(10%_0%,100%_0%,90%_100%,0%_100%)]`}
                                 >
-                                    {s.title}
+                                    {s.title.split(' (')[0]}
                                 </button>
                             ))}
                         </div>

@@ -12,7 +12,6 @@ export default async function Page() {
 
     const res = await fetch(`${baseUrl}/api/industryawards`, { cache: "no-store" });
     
-    console.log("industryawards page hit!")
     let industryawards = null;
     if (res.ok) {
         const data = await res.json();

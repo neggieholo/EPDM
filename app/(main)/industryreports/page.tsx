@@ -15,7 +15,6 @@ export default async function Page() {
     let industryreports = null;
     if (res.ok) {
         const data = await res.json();
-        console.log('industryreports:', data)
         industryreports = data.industryreports;
     }
 

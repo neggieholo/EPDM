@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import type { EnergySubsection } from "../utils/Interfaces";
+import { ExternalLink } from "lucide-react";
 
 export default function EnergyDataDisplay({
   data,
@@ -36,7 +37,7 @@ export default function EnergyDataDisplay({
                 <h3 className="text-lg font-semibold mb-2">Details:</h3>
                 <ul className="list-disc pl-6 space-y-1 mb-6">
                     {active.id === 19 ? (
-                        <li>
+                        <li className="flex">
                         <a
                             href={active.url}
                             target="_blank"
@@ -44,7 +45,8 @@ export default function EnergyDataDisplay({
                             className="text-primary hover:underline"
                         >
                             {active.details}
-                        </a>
+                        </a>                                                    
+                        <ExternalLink size={16} />
                         </li>
                     ) : (
                         active.details.map((d, index) => <li key={index}>{d}</li>)

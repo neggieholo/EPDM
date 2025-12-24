@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { toast } from "react-toastify";
 import {
@@ -23,7 +24,7 @@ async function resendVerificationMail(user: string) {
         const data = await response.json();
         console.log("VerData:", data)
 
-        let timeLeft = data.timeLeft || 30;
+        const timeLeft = data.timeLeft || 30;
         console.log('time left:', timeLeft)
         if (data.timeLeft) {
             toast.error(data.message)

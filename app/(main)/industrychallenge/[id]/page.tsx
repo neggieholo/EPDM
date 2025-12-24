@@ -13,7 +13,6 @@ export default async function Page({ params }: { params: { id: string } }) {
 
     const res = await fetch(`${baseUrl}/api/industrychallenge/${id}`, { cache: "no-store" });
     
-    console.log("industryChallenges page hit!")
     let industryChallenge = null;
     if (res.ok) {
         const data = await res.json();

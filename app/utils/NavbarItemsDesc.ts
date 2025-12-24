@@ -13,16 +13,16 @@ export const industryResourcesItems = [
         heading: "Project Interviews",
         description: "Exclusive interviews  with project managers.",
         href: "/projectinterviews",
+    },    
+    {
+        heading: "Energy Data",
+        description: "Statistical information and facts about the energy industry",
+        href: "/energydata",
     },
     {
         heading: "Industry Reports",
         description: "In-depth analysis, data, and insights about the energy industry.",
         href: "/industryreports",
-    },
-    {
-        heading: "Energy Data",
-        description: "Statistical information and facts about the energy industry",
-        href: "/energydata",
     },
     {
         heading: "Industry Awards",
