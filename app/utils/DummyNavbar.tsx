@@ -14,7 +14,7 @@ interface NavbarProps {
 }
 
 
-export default function DummyNavbar({ zIndex = 0, disabled = true }: NavbarProps) {
+export default function DummyNavbar({ zIndex = 100, disabled = true }: NavbarProps) {
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     return (
@@ -49,7 +49,7 @@ export default function DummyNavbar({ zIndex = 0, disabled = true }: NavbarProps
 
                 <div className="flex text-start items-center gap-3 text-3xl font-extrabold text-primary border-b border-t border-accent">
                     <div className="flex flex-col">
-                        <h1 className="text-white pl-0.5">ENERGY PROJECTS DATA MEDIA LTD.</h1>
+                        <h1 className="text-white pl-0.5">ENERGY PROJECTS DATA MEDIA LTD. dummy</h1>
                         <p className="p-2 rounded mt-2 bg-white" id="logocaption">
                             <i>your reliable and real-time energy projects data e-marketplace</i>
                         </p>
