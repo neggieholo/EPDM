@@ -4,6 +4,7 @@ import { FaFacebook, FaInstagram, FaLinkedin, FaXTwitter, FaYoutube, FaTiktok } 
 import { getSocialLinks } from "../../utils/MiscFectchers";
 import { fetchDocuments } from "@/app/utils/SignUpFetchers";
 import LegalDocBtn from "../legalDocBtn";
+import Link from "next/link";
 
 const Footer = async () => {
     const {socialLinks, phones} = await getSocialLinks();
@@ -83,10 +84,10 @@ const Footer = async () => {
                             Company
                         </h3>
                         <ul className="gap-10 flex justify-evenly w-[50%]">
-                            <li><a href="#" className="hover:text-blue-400">About</a></li>
-                            <li><a href="#" className="hover:text-blue-400">Careers</a></li>                            
-                            <li><a href="#" className="hover:text-blue-400">Contact</a></li>
-                            <li><a href="#" className="hover:text-blue-400">Events</a></li>
+                            <li><Link href="/aboutus" className="hover:text-blue-400">About</Link></li>
+                            <li><Link href="#" className="hover:text-blue-400">Careers</Link></li>                            
+                            <li><Link href="/contactus" className="hover:text-blue-400">Contact</Link></li>
+                            <li><Link href="/locallcontents" className="hover:text-blue-400">Events</Link></li>
                         </ul>
                 </div>
 

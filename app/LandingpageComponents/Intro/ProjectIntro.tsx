@@ -52,7 +52,7 @@ const ProjectIntro = () => {
                     </div>
                   </div>
                   
-                  <div className="w-[60%] h-fit flex flex-col items-center justify-center self-center">
+                  <div className="w-[60%] h-full flex flex-col items-center justify-center self-center">
                     {/* Overall heading */}
                     <h1 className="font-bold text-primary bg-white mb-6 rounded-md text-2xl text-center p-2">
                       OIL AND GAS PROJECTS BY SECTOR

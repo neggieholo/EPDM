@@ -2,14 +2,12 @@
 
 import React from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import localforage from 'localforage';
-import { Home, Archive, Calendar, FileText, Settings, Power } from 'lucide-react';
-import MobSocketProvider from './MobSocketProvider';
+import { Home, Archive, Calendar, FileText, Settings} from 'lucide-react';
 
 const MobBottomNav = () => {
     const router = useRouter();
     const pathname = usePathname();
-    const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+    // const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
     const isActive = (path: string) => pathname === path;
 
@@ -17,7 +15,7 @@ const MobBottomNav = () => {
     const navItems = [
         { path: '/home', icon: <Home className="w-5 h-5 text-primary" />, label: 'Home' },
         { path: '/home/projects', icon: <Archive className="w-5 h-5 text-primary" />, label: 'Projects' },
-        { path: '/home/schedules', icon: <Calendar className="w-5 h-5 text-primary" />, label: 'News' },
+        { path: '/home/energydata', icon: <Calendar className="w-5 h-5 text-primary" />, label: 'Energy Data' },
         { path: '/home/projects/subscribed', icon: <FileText className="w-5 h-5 text-primary" />, label: 'Newsletter' },
         { path: '/home/projects/favorites', icon: <Settings className="w-5 h-5 text-primary" />, label: 'Favourites' },
     ];

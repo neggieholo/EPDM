@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import React from 'react';
 import { useRouter } from "next/navigation";
 import { useProfile } from '../utils/ProfileContext';
@@ -28,13 +27,13 @@ const HomeIndex: React.FC<HomeIndexProps> = ({ recentlyCreated }) => {
     return (
         <div className="p-4 w-[90%] mx-auto">
             <div className="flex flex-col m-3 p-3 bg-white text-black rounded-lg shadow-md">
-                <h2 className="text-xl font-semibold mb-2 px-2 bg-primary rounded-md text-white">
+                <h2 className="text-2xl font-semibold mb-2 px-2 bg-primary rounded-md text-white">
                     Recently Added Projects
                 </h2>
 
                 <ul className="mb-6 list-disc pl-5">
                     {recentlyCreated.map((project) => (
-                        <li key={project._id} className="my-6 mx-2 text-lg">
+                        <li key={project._id} className="my-6 mx-2 text-xl">
                             <button
                                 onClick={() => openProject(project)}
                                 className="text-primary hover:underline"

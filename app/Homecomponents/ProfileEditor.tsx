@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -19,10 +20,14 @@ const ProfileEditor: React.FC<ProfileEditorProps> = ({ profile }) => {
 
     useEffect(() => {
         if (!profile) return;
-        const filtered = filterAndFormatProfileData(profile);
-        setProfileData(filtered);
-        setOriginalProfileData(filtered);
-        setEditState({});
+        const setProfile = () => {
+            const filtered = filterAndFormatProfileData(profile);
+            setProfileData(filtered);
+            setOriginalProfileData(filtered);
+            setEditState({});
+        };
+
+        setProfile();
     }, [profile]);
 
     const handleEditToggle = (field: string) => {
@@ -66,24 +71,25 @@ const ProfileEditor: React.FC<ProfileEditorProps> = ({ profile }) => {
 
     return (
         <div className="max-w-5xl mx-auto p-6 bg-white shadow-lg rounded-xl mt-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">Profile</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-2">Profile</h2>
+            <hr className='h-1 bg-primary mb-8'/>
 
             {Object.entries(profileData).map(([field, value]) => {
                 const isReadOnly = field === "Subscription Expiry Date";
 
                 return (
-                    <div key={field} className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center mb-4">
-                        <label className="text-gray-700 font-medium">{field}:</label>
+                    <div key={field} className="grid grid-cols-3 gap-4 items-center mb-12">
+                        <label className="text-gray-700 font-bold text-lg">{field}:</label>
 
                         {editState[field] && !isReadOnly ? (
                             <input
                                 type="text"
                                 value={value}
                                 onChange={(e) => handleInputChange(field, e.target.value)}
-                                className="col-span-2 w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:outline-none"
+                                className="w-full px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-primary focus:outline-none text-lg"
                             />
                         ) : (
-                            <span className="col-span-2 text-gray-700 px-3 py-2 bg-gray-50 rounded border border-gray-200">
+                            <span className="text-gray-700 px-3 py-2 bg-gray-50 rounded border border-gray-200 text-lg">
                                 {value || "-"}
                             </span>
                         )}
@@ -91,7 +97,7 @@ const ProfileEditor: React.FC<ProfileEditorProps> = ({ profile }) => {
                         {!isReadOnly && (
                             <button
                                 onClick={() => handleEditToggle(field)}
-                                className="mt-2 sm:mt-0 px-4 py-2 text-sm font-medium rounded border border-gray-300 hover:bg-gray-100 transition-colors"
+                                className="mt-0 bg-accent/60 text-primary text-lg px-4 py-2 font-medium rounded border border-gray-300 hover:bg-gray-100 transition-colors"
                             >
                                 {editState[field] ? "Save" : "Edit"}
                             </button>

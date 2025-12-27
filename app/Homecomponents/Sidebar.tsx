@@ -9,7 +9,6 @@ const SideBar = () => {
     const pathname = usePathname();
 
     const isActive = (path: string) => pathname === path;
-    const baseUrl = process.env.NEXT_PUBLIC_baseUrl;
 
     return (
         <aside className="w-64 bg-primary p-4 flex flex-col justify-between h-screen">
@@ -28,10 +27,10 @@ const SideBar = () => {
                         Energy Projects <br className="hidden sm:block" /> Data Media
                     </h1>
                 </div>
-                <div className="flex flex-col space-y-4 mt-6">
+                <div className="flex flex-col space-y-6 mt-6">
                     <button
                         onClick={() => router.push("/home")}
-                        className={`btn w-full justify-start gap-3 normal-case rounded-lg font-bold shadow-md
+                        className={`btn w-full justify-start gap-3 normal-case rounded-lg font-bold text-lg shadow-md
                         ${isActive("/home") ? "bg-accent text-accent-content" :
                         "bg-white text-gray-800 hover:bg-primary/20 hover:text-white"}`}
                     >
@@ -40,7 +39,7 @@ const SideBar = () => {
 
                     <button
                         onClick={() => router.push("/home/projects")}
-                        className={`btn w-full justify-start gap-3 normal-case rounded-lg font-bold shadow-md
+                        className={`btn w-full justify-start gap-3 normal-case rounded-lg font-bold text-lg shadow-md
                         ${isActive("/home/projects") ? "bg-accent text-accent-content" :
                                 "bg-white text-gray-800 hover:bg-primary/20 hover:text-white"}`}>
                         <Archive className="w-5 h-5" /> Projects
@@ -48,16 +47,16 @@ const SideBar = () => {
 
                     <button
                         onClick={() => router.push("/home/news")}
-                        className={`btn w-full justify-start gap-3 normal-case rounded-lg font-bold shadow-md
+                        className={`btn w-full justify-start gap-3 normal-case rounded-lg font-bold text-lg shadow-md
                         ${isActive("/home/news") ? "bg-accent text-accent-content" :
                                 "bg-white text-gray-800 hover:bg-primary/20 hover:text-white"}`}
                     >
-                        <Calendar className="w-5 h-5" /> News
+                        <Calendar className="w-5 h-5" /> Energy Data
                     </button>
 
                     <button
                         onClick={() => router.push("/home/projects/favorites")}
-                        className={`btn w-full justify-start gap-3 normal-case rounded-lg font-bold shadow-md
+                        className={`btn w-full justify-start gap-3 normal-case rounded-lg font-bold text-lg shadow-md
                         ${isActive("/home/projects/favorites") ? "bg-accent text-accent-content" :
                                 "bg-white text-gray-800 hover:bg-primary/20 hover:text-white"}`}
                     >
@@ -66,7 +65,7 @@ const SideBar = () => {
 
                     <button
                         onClick={() => router.push("/home/projects/subscribed")}
-                        className={`btn w-full justify-start gap-3 normal-case rounded-lg font-bold shadow-md
+                        className={`btn w-full justify-start gap-3 normal-case rounded-lg font-bold text-lg shadow-md
                         ${isActive("/home/projects/subscribed") ? "bg-accent text-accent-content" :
                                 "bg-white text-gray-800 hover:bg-primary/20 hover:text-white"}`}
                     >

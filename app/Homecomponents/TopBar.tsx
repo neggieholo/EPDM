@@ -29,12 +29,16 @@ const TopBar: React.FC = () => {
             {/* Right: Menu items */}
             <div className="flex items-center space-x-4">
                 {/* Help */}
-                <Link href="#" className="font-bold hover:text-primary">
+                <Link 
+                onClick={() => setSettingsOpen(false)}
+                href="#" className="font-bold hover:text-primary hover:bg-white border boder-primary p-2 rounded-md">
                     Help
                 </Link>
 
                 {/* Subscribe */}
-                <Link href="/home/subscribe" className="font-bold hover:text-primary">
+                <Link 
+                onClick={() => setSettingsOpen(false)}
+                href="/home/subscribe" className="font-bold hover:text-primary hover:bg-white border boder-primary p-2 rounded-md">
                     Subscribe
                 </Link>
 
@@ -42,17 +46,17 @@ const TopBar: React.FC = () => {
                 <div className="relative">
                     <button
                         onClick={() => setSettingsOpen(!settingsOpen)}
-                        className="flex items-center font-bold hover:text-primary focus:outline-none"
+                        className="flex items-center font-bold hover:text-primary hover:bg-white border boder-primary p-2 rounded-md focus:outline-none"
                     >
                         Settings
                     </button>
 
                     {settingsOpen && (
-                        <ul className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg py-2 text-sm z-50">
+                        <ul className="absolute right-0 mt-2 w-48 bg-white text-primary shadow-lg rounded-lg py-2 font-bold text-md z-50">
                             <li>
                                 <Link
                                     href="/home/profile"
-                                    className="block px-4 py-2 hover:bg-gray-100"
+                                    className="block px-4 py-2 hover:bg-primary hover:text-white"
                                     onClick={() => setSettingsOpen(false)}
                                 >
                                     Profile
@@ -60,8 +64,8 @@ const TopBar: React.FC = () => {
                             </li>
                             <li>
                                 <Link
-                                    href="/home/account"
-                                    className="block px-4 py-2 hover:bg-gray-100"
+                                    href="#"
+                                    className="block px-4 py-2  hover:bg-primary hover:text-white"
                                     onClick={() => setSettingsOpen(false)}
                                 >
                                     Manage Account
@@ -70,7 +74,7 @@ const TopBar: React.FC = () => {
                             <li>
                                 <button
                                     onClick={handleLogOut}
-                                    className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                                    className="w-full text-left px-4 py-2  hover:bg-primary hover:text-white"
                                 >
                                     Log Out
                                 </button>

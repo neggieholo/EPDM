@@ -30,7 +30,7 @@ export default async function HomeLayout({ children }: HomeLayoutProps) {
                     <div className="flex flex-col flex-1">
                         <TopBar />
 
-                        <main className="flex-1 p-6 space-y-6 bg-white relative">
+                        <main className="flex-1 p-6 space-y-6 bg-white relative overflow-y-auto">
                             {children}
                             <SocketProvider />
                         </main>
@@ -43,6 +43,7 @@ export default async function HomeLayout({ children }: HomeLayoutProps) {
 
                     <main className="flex-1 overflow-y-auto p-4 space-y-5 pb-24 relative">
                         {children}
+                        <SocketProvider />
                     </main>
 
                     <MobBottomNav />
