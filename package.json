@@ -1,0 +1,41 @@
+{
+  "name": "epdm-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "ngrok": "ngrok http 3000",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "dom-to-image": "^2.6.0",
+    "html2canvas": "^1.4.1",
+    "html2canvas-pro": "^1.5.13",
+    "html2pdf.js": "^0.14.0",
+    "jspdf": "^4.2.1",
+    "libphonenumber-js": "^1.12.26",
+    "localforage": "^1.10.0",
+    "lucide-react": "^0.553.0",
+    "next": "^16.1.7",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-icons": "^5.5.0",
+    "react-phone-number-input": "^3.4.13",
+    "react-toastify": "^11.0.5",
+    "socket.io-client": "^4.8.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "daisyui": "^5.5.5",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.1",
+    "ngrok": "^5.0.0-beta.2",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
