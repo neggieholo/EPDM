@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 
@@ -48,10 +49,13 @@ const MobProjectInterviews: React.FC<ProjectInterviewsProps> = ({ interviews }) 
                 <div className="w-full flex items-center justify-center p-4 mb-6 md:mb-0">
                     <div className="flex flex-col justify-evenly bg-primary items-center text-center shadow-strong h-auto md:h-[80%] py-8 px-5">
                         <h2 className="text-4xl font-extrabold text-white leading-tight">
-                            PRESS
+                            PROJECT
                         </h2>
                         <h2 className="text-4xl font-extrabold text-white leading-tight">
-                            RELEASES
+                            LEADERSHIP
+                        </h2>
+                        <h2 className="text-4xl font-extrabold text-white leading-tight">
+                            SPOTLIGHT
                         </h2>
                     </div>
                 </div>

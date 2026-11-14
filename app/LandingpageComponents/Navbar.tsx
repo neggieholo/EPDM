@@ -3,13 +3,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import NavbarDropdown from "./NavBarDropdown";
-import { industryResourcesItems, aboutUsItems } from "../utils/NavbarItemsDesc";
+import { industryResourcesItems, aboutUsItems, industryShowcaseItems } from "../utils/NavbarItemsDesc";
 import { useState } from "react";
 import { NavbarSections } from "../utils/LandingPageSections";
 
 interface NavbarProps {
-  zIndex?: number; // optional, default 50
-  disabled?: boolean; // optional, default false
+  zIndex?: number; 
+  disabled?: boolean; 
 }
 
 export default function Navbar({ zIndex = 50, disabled = false }: NavbarProps) {
@@ -101,7 +101,9 @@ export default function Navbar({ zIndex = 50, disabled = false }: NavbarProps) {
             items={
               dropdownName === "ABOUT US"
                 ? aboutUsItems
-                : industryResourcesItems
+                : dropdownName === "INDUSTRY RESOURCES"
+                  ? industryResourcesItems
+                  : industryShowcaseItems
             }
           />
         </div>

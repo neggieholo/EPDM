@@ -52,7 +52,10 @@ const ProjectInterviews: React.FC<ProjectInterviewsProps> = ({ interviews }) => 
                                 PROJECT
                             </h2>
                             <h2 className="text-7xl font-extrabold mb-2 text-white leading-tight">
-                                INTERVIEWS
+                                LEADERSHIP
+                            </h2>
+                            <h2 className="text-7xl font-extrabold mb-2 text-white leading-tight">
+                                SPOTLIGHT
                             </h2>
                         </div>
                     </div>

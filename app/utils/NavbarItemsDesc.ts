@@ -5,15 +5,9 @@ export const industryResourcesItems = [
     href: "/industrynews",
   },
   {
-    heading: "Local Content Achievements",
-    description:
-      "Showcasing local content achievements of operators and service companies.",
-    href: "/localcontents",
-  },
-  {
-    heading: "Project Interviews",
+    heading: "Project Leadership Spotlight",
     description: "Exclusive interviews  with project managers.",
-    href: "/projectinterviews",
+    href: "/project-spotlight",
   },
   {
     heading: "Energy Data",
@@ -68,5 +62,26 @@ export const aboutUsItems = [
     heading: "Corporate Governance",
     description: "Information about our corporate governance practices",
     href: "/corporate-governance",
+  },
+];
+
+export const industryShowcaseItems = [
+  {
+    heading: "Local Content Achievements",
+    description:
+      "Showcasing local content achievements of operators and service companies.",
+    href: "/localcontents",
+  },
+  {
+    heading: "Decarbonization Achievements",
+    description:
+      "Showcasing industry decarbonization projects, experiences, and best practices",
+    href: "/corporate-governance",
+  },
+  {
+    heading: "CSR & Community Impact",
+    description:
+      "Showcase industry Community Development Projects and Corporate Social Responsibility (CSR), share experiences, and promote adoption of best practices across the industry",
+    href: "/corporate-go",
   },
 ];

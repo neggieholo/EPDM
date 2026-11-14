@@ -143,3 +143,13 @@ export interface EnergySubsection {
   url?: string;
   benefits: string;
 }
+
+
+export interface Partner {
+  _id?: string;
+  name: string;
+  logoUrl: string;
+  website?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
