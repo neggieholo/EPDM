@@ -36,8 +36,7 @@ export default async function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const headersList = await headers();
   const userAgent = headersList.get("user-agent") || "";
-  // const mobileCheck = isMobile(userAgent);
-  const mobileCheck = true;
+  const mobileCheck = isMobile(userAgent);
 
   return (
     <html lang="en" data-theme="epdm" className="overflow-x-hidden">

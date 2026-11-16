@@ -76,8 +76,8 @@ export default function Navbar({ zIndex = 50, disabled = false }: NavbarProps) {
                   setDropdownName("");
                 }
               }}
-              className="text-sm md:text-base text-primary font-medium px-3 py-2 rounded-md 
-                            transition-colors duration-300 hover:bg-primary hover:text-white"
+              className={`text-sm md:text-base text-primary font-medium px-3 py-2 rounded-md 
+                            transition-colors duration-300 hover:bg-primary hover:text-white ${dropdownOpen && dropdownName === s.name ? "bg-primary text-white" : ""}`}
             >
               {s.name}
             </a>

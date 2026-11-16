@@ -1,13 +1,13 @@
 // app/layouts/HomeLayout.tsx
 import { headers } from "next/headers";
 import { isMobile } from "../utils/IsMobile";
-import { Poppins } from "next/font/google";
+// import { Poppins } from "next/font/google";
 import SideBar from "../Homecomponents/Sidebar";
 import TopBar from "../Homecomponents/TopBar";
 import MobTopBar from "../Homecomponents/mobile/MobTopBar";
 import MobBottomNav from "../Homecomponents/mobile/MobBottomNav";
 import { ProfileProvider } from "../utils/ProfileContext";
-import SocketProvider from "../Homecomponents/SocketProvider";
+// import SocketProvider from "../Homecomponents/SocketProvider";
 
 interface HomeLayoutProps {
     children: React.ReactNode;
@@ -32,7 +32,7 @@ export default async function HomeLayout({ children }: HomeLayoutProps) {
 
                         <main className="flex-1 p-6 space-y-6 bg-white relative overflow-y-auto">
                             {children}
-                            <SocketProvider />
+                            {/* <SocketProvider /> */}
                         </main>
                     </div>
                 </div>
@@ -43,7 +43,7 @@ export default async function HomeLayout({ children }: HomeLayoutProps) {
 
                     <main className="flex-1 p-4 space-y-5 pb-24 relative ovr">
                         {children}
-                        <SocketProvider />
+                        {/* <SocketProvider /> */}
                     </main>
 
                     <MobBottomNav />

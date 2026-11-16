@@ -9,6 +9,7 @@ import {
   Settings,
   ChevronDown,
   ChevronRight,
+  ChevronUp,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -67,7 +68,7 @@ const SideBar = () => {
               {projectsOpen ? (
                 <ChevronDown className="w-5 h-5" />
               ) : (
-                <ChevronRight className="w-5 h-5" />
+                <ChevronUp className="w-5 h-5" />
               )}
             </button>
 
@@ -90,13 +91,13 @@ const SideBar = () => {
                   <FileText className="w-4 h-4" /> Favourites
                 </button>
 
-                <button
+                {/* <button
                   onClick={() => router.push("/home/projects/subscribed")}
                   className={`btn btn-sm justify-start gap-3 normal-case rounded-md font-semibold text-base w-full
                                     ${isActive("/home/projects/subscribed") ? "bg-accent text-accent-content" : "bg-transparent text-white hover:bg-white/10"}`}
                 >
                   <Settings className="w-4 h-4" /> Subscribed
-                </button>
+                </button> */}
               </div>
             )}
           </div>

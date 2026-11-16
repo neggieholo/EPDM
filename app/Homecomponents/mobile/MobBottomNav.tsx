@@ -1,55 +1,153 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import { Home, Archive, Calendar, FileText, Settings} from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import {
+  Home,
+  Archive,
+  Calendar,
+  FileText,
+  ChevronUp,
+  ChevronDown,
+} from "lucide-react";
 
 const MobBottomNav = () => {
-    const router = useRouter();
-    const pathname = usePathname();
-    // const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+  const router = useRouter();
+  const pathname = usePathname();
 
-    const isActive = (path: string) => pathname === path;
+  // Automatically open Projects menu on project routes
+  const isProjectRoute = pathname.startsWith("/home/projects");
 
+  const [projectsOpen, setProjectsOpen] = useState(isProjectRoute);
 
-    const navItems = [
-        { path: '/home', icon: <Home className="w-5 h-5 text-primary" />, label: 'Home' },
-        { path: '/home/projects', icon: <Archive className="w-5 h-5 text-primary" />, label: 'Projects' },
-        { path: '/home/energydata', icon: <Calendar className="w-5 h-5 text-primary" />, label: 'Energy Data' },
-        { path: '/home/projects/subscribed', icon: <FileText className="w-5 h-5 text-primary" />, label: 'Newsletter' },
-        { path: '/home/projects/favorites', icon: <Settings className="w-5 h-5 text-primary" />, label: 'Favourites' },
-    ];
+  useEffect(() => {
+    const handleProjectRoute = () => {
+      if (isProjectRoute) {
+        setProjectsOpen(true);
+      }
+    };
 
-    return (
-        <nav className="fixed bottom-0 left-0 right-0 z-50 flex justify-around items-center bg-base-100 border-t border-base-300 shadow-lg md:hidden py-2">
-            {navItems.map(({ path, icon, label }) => {
-                const active = isActive(path);
-                return (
-                    <button
-                        key={path}
-                        onClick={() => router.push(path)}
-                        className={`flex flex-col items-center px-2 py-1 transition-all duration-200
-              ${active
-                                ? 'text-primary font-semibold scale-110 bg-base-200 rounded-lg'
-                                : 'text-base-content/60 hover:text-primary'
-                            }`}
-                    >
-                        {icon}
-                        <span className="text-[10px] mt-0.5 text-primary">{label}</span>
-                    </button>
-                );
-            })}
+    handleProjectRoute();
+  }, [isProjectRoute]);
 
-            {/* Logout button
-            <button
-                onClick={handleLogout}
-                className="flex flex-col items-center px-2 py-1 text-base-content/60 hover:text-error transition-all"
-            >
-                <Power className="w-5 h-5" />
-                <span className="text-[10px] mt-0.5 text-primary">Logout</span>
-            </button> */}
-        </nav>
-    );
+  const isActive = (path: string) => pathname === path;
+
+  return (
+    <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-blue-100 shadow-lg">
+      {/* Projects Drop-up Menu */}
+      {projectsOpen && (
+        <div className="absolute bottom-full left-0 right-0 px-4 pb-3">
+          <div className="bg-white border border-blue-100 rounded-xl shadow-xl overflow-hidden">
+            <div className="px-4 py-3 bg-primary text-white">
+              <p className="text-sm font-bold">Projects</p>
+
+              <p className="text-[11px] text-white/70">
+                Browse and manage your projects
+              </p>
+            </div>
+
+            <div className="p-2 flex flex-col gap-1">
+              {/* All Projects */}
+              <button
+                onClick={() => {
+                  router.push("/home/projects");
+                  setProjectsOpen(false);
+                }}
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition
+                                    ${
+                                      isActive("/home/projects")
+                                        ? "bg-blue-100 text-primary"
+                                        : "text-slate-700 hover:bg-blue-50"
+                                    }`}
+              >
+                <Archive className="w-5 h-5" />
+                All Projects
+              </button>
+
+              {/* Favourites */}
+              <button
+                onClick={() => {
+                  router.push("/home/projects/favorites");
+                  setProjectsOpen(false);
+                }}
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition
+                                    ${
+                                      isActive("/home/projects/favorites")
+                                        ? "bg-blue-100 text-primary"
+                                        : "text-slate-700 hover:bg-blue-50"
+                                    }`}
+              >
+                <FileText className="w-5 h-5" />
+                Favourites
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Bottom Navigation Items */}
+      <div className="flex justify-around items-center py-2 px-2">
+        {/* Home */}
+        <button
+          onClick={() => {
+            setProjectsOpen(false);
+            router.push("/home");
+          }}
+          className={`flex flex-col items-center justify-center gap-1 px-4 py-1.5 rounded-lg transition-all
+                        ${
+                          isActive("/home")
+                            ? "bg-blue-50 text-primary font-semibold"
+                            : "text-slate-500"
+                        }`}
+        >
+          <Home className="w-5 h-5" />
+
+          <span className="text-[10px]">Home</span>
+        </button>
+
+        {/* Projects */}
+        <button
+          onClick={() => setProjectsOpen((prev) => !prev)}
+          className={`flex flex-col items-center justify-center gap-1 px-4 py-1.5 rounded-lg transition-all
+                        ${
+                          isProjectRoute || projectsOpen
+                            ? "bg-blue-50 text-primary font-semibold"
+                            : "text-slate-500"
+                        }`}
+        >
+          <div className="flex items-center gap-1">
+            <Archive className="w-5 h-5" />
+
+            {projectsOpen ? (
+              <ChevronDown className="w-3 h-3" />
+            ) : (
+              <ChevronUp className="w-3 h-3" />
+            )}
+          </div>
+
+          <span className="text-[10px]">Projects</span>
+        </button>
+
+        {/* Energy Data */}
+        <button
+          onClick={() => {
+            setProjectsOpen(false);
+            router.push("/home/energydata");
+          }}
+          className={`flex flex-col items-center justify-center gap-1 px-4 py-1.5 rounded-lg transition-all
+                        ${
+                          isActive("/home/energydata")
+                            ? "bg-blue-50 text-primary font-semibold"
+                            : "text-slate-500"
+                        }`}
+        >
+          <Calendar className="w-5 h-5" />
+
+          <span className="text-[10px]">Energy Data</span>
+        </button>
+      </div>
+    </nav>
+  );
 };
 
 export default MobBottomNav;

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { headers, cookies } from "next/headers";
 import { isMobile } from "@/app/utils/IsMobile";

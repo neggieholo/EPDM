@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { headers, cookies } from "next/headers";
 import { isMobile } from "@/app/utils/IsMobile";
 import { Project } from "@/app/utils/Interfaces";
-import { fetchFavProjects, fieldMappings, filterEmptyValues } from "@/app/utils/ProjectFetchers";
+import { fieldMappings, filterEmptyValues } from "@/app/utils/ProjectFetchers";
 import ProjectsPage from "@/app/Homecomponents/Projects";
 import MobProjectsPage from "@/app/Homecomponents/mobile/MobProjects";
 

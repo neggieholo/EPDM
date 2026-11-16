@@ -10,15 +10,20 @@ export const industryResourcesItems = [
     href: "/project-spotlight",
   },
   {
-    heading: "Energy Data",
-    description: "Statistical information and facts about the energy industry",
-    href: "/energydata",
+    heading: "Tender Opportunities",
+    description: "Access upcoming & current industry tenders",
+    href: "/tender-opportunities",
   },
   {
     heading: "Industry Reports",
     description:
       "In-depth analysis, data, and insights about the energy industry.",
     href: "/industryreports",
+  },
+  {
+    heading: "Energy Data",
+    description: "Statistical information and facts about the energy industry",
+    href: "/energydata",
   },
   {
     heading: "Industry Awards",
@@ -29,11 +34,6 @@ export const industryResourcesItems = [
     heading: "Energy Challenge",
     description: "Energy Challenge Competition for Universities.",
     href: "/industrychallenge",
-  },
-  {
-    heading: "Tender Opportunities",
-    description: "Access upcoming & current industry tenders",
-    href: "/tender-opportunities",
   },
 ];
 
