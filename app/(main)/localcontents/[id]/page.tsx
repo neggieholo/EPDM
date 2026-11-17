@@ -20,5 +20,5 @@ export default async function Page({ params }: { params: { id: string } }) {
         localcontent = data.localcontent;
     }
 
-    return mobileCheck ? <MobIndustryInfoDisplay content={localcontent}/> : <IndustryInfoDisplay content={localcontent}/>;
+    return mobileCheck ? <MobIndustryInfoDisplay content={localcontent} address="localcontents"/> : <IndustryInfoDisplay content={localcontent} address="localcontents"/>;
 }

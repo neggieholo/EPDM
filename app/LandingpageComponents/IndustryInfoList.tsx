@@ -36,12 +36,10 @@ const IndustryInfo: React.FC<IndustryInfoProps> = ({ contents, nameA, nameB, nam
     >("Operators");
     const [searchQuery, setSearchQuery] = useState("");
     const itemsPerPage = 4;
-    const isLocalPage = nameA === "Local";
+    const isLocal = nameA === "Local" || nameA === "Decarbonization" || nameA === "CSR" || nameA === "Tender";
 
     const filteredContents = useMemo(() => {
-      if (!contents) return [];
-
-      const isLocal = nameA === "Local";
+      if (!contents) return [];;
 
       return contents.filter((item) => {
         // 1. Tab Filtering (Only apply if nameA is "Local")
@@ -105,7 +103,7 @@ const IndustryInfo: React.FC<IndustryInfoProps> = ({ contents, nameA, nameB, nam
               </div>
             </div>
 
-            {isLocalPage && (
+            {isLocal && (
               <div className="flex border-b border-gray-200 mb-6">
                 {(["Operators", "Service Companies"] as const).map((tab) => (
                   <button
@@ -132,7 +130,7 @@ const IndustryInfo: React.FC<IndustryInfoProps> = ({ contents, nameA, nameB, nam
               <input
                 type="text"
                 placeholder={
-                  isLocalPage
+                  isLocal
                     ? "Search title or company..."
                     : "Search by title..."
                 }
@@ -155,7 +153,7 @@ const IndustryInfo: React.FC<IndustryInfoProps> = ({ contents, nameA, nameB, nam
                         {content.heading}
                       </h3>
                       {/* Only show Company Name if it's Local Content */}
-                      {isLocalPage && content.companyName && (
+                      {isLocal && content.companyName && (
                         <span className="text-sm text-gray-200 uppercase font-medium mt-1">
                           {content.companyName}
                         </span>

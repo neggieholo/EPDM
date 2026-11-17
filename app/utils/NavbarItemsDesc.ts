@@ -76,12 +76,12 @@ export const industryShowcaseItems = [
     heading: "Decarbonization Achievements",
     description:
       "Showcasing industry decarbonization projects, experiences, and best practices",
-    href: "/corporate-governance",
+    href: "/decarbonization",
   },
   {
     heading: "CSR & Community Impact",
     description:
       "Showcase industry Community Development Projects and Corporate Social Responsibility (CSR), share experiences, and promote adoption of best practices across the industry",
-    href: "/corporate-go",
+    href: "/csr_impact",
   },
 ];
