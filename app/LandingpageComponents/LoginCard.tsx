@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useRouter, useSearchParams } from "next/navigation";
 import resendVerificationMail from "../utils/LandingPageFetchers";
@@ -90,94 +90,94 @@ const LoginCard: React.FC = () => {
     }
 
     return (
-        <section className="w-full min-h-screen flex flex-col items-center justify-center bg-white">
-            {verificationLoading && <p>Verifying email...</p>}
-            <div className="w-[90%] sm:w-112.5 bg-accent/50 p-8 border border-accent/20">
-                <h2 className="text-2xl font-bold text-center text-primary mb-6">
-                    Login
-                </h2>
+      <section className="w-full min-h-[70vh] flex flex-col items-center justify-center bg-white">
+        {verificationLoading && <p>Verifying email...</p>}
+        <div className="w-[90%] sm:w-112.5 bg-accent/50 p-8 border border-accent/20">
+          <h2 className="text-2xl font-bold text-center text-primary mb-6">
+            Login
+          </h2>
 
-                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                    {/* Username */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                            Username
-                        </label>
-                        <div>
-                            <input
-                                type="text"
-                                name="username"
-                                required
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value.trim())}
-                                placeholder="Enter your username"
-                                className="w-full px-4 py-2 border border-accent/30 rounded-md 
-                                focus:outline-none focus:ring-2 focus:ring-accent bg-white"
-                                />
-                        </div>
-                    </div>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            {/* Username */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Username
+              </label>
+              <div>
+                <input
+                  type="text"
+                  name="username"
+                  required
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value.trim())}
+                  placeholder="Enter your username"
+                  className="w-full px-4 py-2 border border-accent/30 rounded-md 
+                                focus:outline-none focus:ring-2 placeholder:text-gray-400 focus:ring-accent bg-white"
+                />
+              </div>
+            </div>
 
-                    {/* Password */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                            Password
-                        </label>
-                        <div className="relative">
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                name="password"
-                                required
-                                placeholder="Enter your password"
-                                className="w-full px-4 py-2 border border-accent/30 rounded-md focus:outline-none focus:ring-2 
-                                focus:ring-accent pr-12 bg-gray-100"
-                            />
-                            <button
-                                type="button"
-                                onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-3 top-2.5 text-sm text-accent font-semibold"
-                            >
-                                {showPassword ? "Hide" : "Show"}
-                            </button>
-                        </div>
-                    </div>
+            {/* Password */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Password
+              </label>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  required
+                  placeholder="Enter your password"
+                  className="w-full px-4 py-2 border border-accent/30 rounded-md focus:outline-none focus:ring-2 
+                                focus:ring-accent pr-12 placeholder:text-gray-400  bg-gray-100"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-2.5 text-sm text-accent font-semibold"
+                >
+                  {showPassword ? "Hide" : "Show"}
+                </button>
+              </div>
+            </div>
 
-                    {/* Buttons */}
-                    <div className="flex flex-col gap-3 mt-3">
-                        <button
-                            type="submit"
-                            className="bg-accent text-white font-semibold py-2 rounded-md hover:bg-accent/90 transition"
-                            disabled={isLoading}
-                        >
-                            {isLoading ? "Logging in..." : "Login"}
-                        </button>
+            {/* Buttons */}
+            <div className="flex flex-col gap-3 mt-3">
+              <button
+                type="submit"
+                className="bg-accent text-white font-semibold py-2 rounded-md hover:bg-accent/90 transition"
+                disabled={isLoading}
+              >
+                {isLoading ? "Logging in..." : "Login"}
+              </button>
 
-                        {showResend && (
-                            <button
-                                type="button"
-                                onClick={() => resendVerificationMail(username)}
-                                className="bg-secondary text-white font-semibold py-2 rounded-md hover:bg-secondary/90 transition"
-                            >
-                                Request Verification Email
-                            </button>
-                        )}
+              {showResend && (
+                <button
+                  type="button"
+                  onClick={() => resendVerificationMail(username)}
+                  className="bg-secondary text-white font-semibold py-2 rounded-md hover:bg-secondary/90 transition"
+                >
+                  Request Verification Email
+                </button>
+              )}
 
-                        <a
-                            href="/forgotpassword"
-                            target="_blank"
-                            className="text-primary text-center text-sm hover:underline"
-                        >
-                            Forgot Password?
-                        </a>
-                    </div>
-                </form>
+              <a
+                href="/forgotpassword"
+                target="_blank"
+                className="text-primary text-center text-sm hover:underline"
+              >
+                Forgot Password?
+              </a>
+            </div>
+          </form>
 
-                {/* {errorMessage && (
+          {/* {errorMessage && (
                     <p className="text-center text-red-500 text-sm mt-4">
                         {errorMessage}
                     </p>
                 )} */}
-            </div>
-        </section>
+        </div>
+      </section>
     );
 };
 

@@ -1,310 +1,401 @@
-'use client';
+"use client";
 
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
-import { E164Number, isValidPhoneNumber } from "libphonenumber-js";
+import { E164Number } from "libphonenumber-js";
 import { submitRegistration, fetchDocuments } from "@/app/utils/SignUpFetchers";
 import { validateFields } from "@/app/utils/LandingPageFetchers";
 // import TermsPrivacyDialog from "./TermsPrivacyDialog";
 
 const MobRegisterCard: React.FC = () => {
-    const [showPassword, setShowPassword] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-    // Inputs
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState<E164Number | undefined>(undefined);
-    const [password, setPassword] = useState("");
-    const [position, setPosition] = useState("");
-    const [company, setCompany] = useState("");
-    const [address, setAddress] = useState("");
-    const [nature, setNature] = useState("");
+  // Inputs
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState<E164Number | undefined>(undefined);
+  const [password, setPassword] = useState("");
+  const [position, setPosition] = useState("");
+  const [company, setCompany] = useState("");
+  const [address, setAddress] = useState("");
+  const [nature, setNature] = useState("");
 
-    const [isUsernameValid, setIsUsernameValid] = useState(false);
-    const [isEmailValid, setIsEmailValid] = useState(false);
-    const [isPhoneValid, setIsPhoneValid] = useState(false);
-    const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [isUsernameValid, setIsUsernameValid] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(false);
+  const [isPhoneValid, setIsPhoneValid] = useState(false);
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
 
-    // Status messages
-    const [usernameStatus, setUsernameStatus] = useState("");
-    const [emailStatus, setEmailStatus] = useState("");
-    const [phoneStatus, setPhoneStatus] = useState("");
-    const [passwordStatus, setPasswordStatus] = useState("");
+  // Status messages
+  const [usernameStatus, setUsernameStatus] = useState("");
+  const [emailStatus, setEmailStatus] = useState("");
+  const [phoneStatus, setPhoneStatus] = useState("");
+  const [passwordStatus, setPasswordStatus] = useState("");
 
-    // Dialogs
-    const [termsContent, setTermsContent] = useState("");
-    const [privacyContent, setPrivacyContent] = useState("");
-    const [showTerms, setShowTerms] = useState(false);
-    const [showPrivacy, setShowPrivacy] = useState(false);
+  // Dialogs
+  const [termsContent, setTermsContent] = useState("");
+  const [privacyContent, setPrivacyContent] = useState("");
+  const [showTerms, setShowTerms] = useState(false);
+  const [showPrivacy, setShowPrivacy] = useState(false);
 
-   
-    // Load terms & privacy
-    useEffect(() => {
-        const loadDocs = async () => {
-            const { terms, privacy } = await fetchDocuments();
-            setTermsContent(terms);
-            setPrivacyContent(privacy);
-        };
-        loadDocs();
-    }, []);
+  // Load terms & privacy
+  useEffect(() => {
+    const loadDocs = async () => {
+      const { terms, privacy } = await fetchDocuments();
+      setTermsContent(terms);
+      setPrivacyContent(privacy);
+    };
 
-    // Field validations
-    useEffect(() => {
-        validateFields({
-            username,
-            email,
-            phone,
-            password,
-            setUsernameStatus,
-            setIsUsernameValid,
-            setEmailStatus,
-            setIsEmailValid,
-            setPhoneStatus,
-            setIsPhoneValid,
-            setPasswordStatus,
-            setIsPasswordValid,
-        });
-    }, [username, email, phone, password]);
+    loadDocs();
+  }, []);
 
-    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-        e.preventDefault();
+  // Field validations
+  useEffect(() => {
+    validateFields({
+      username,
+      email,
+      phone,
+      password,
+      setUsernameStatus,
+      setIsUsernameValid,
+      setEmailStatus,
+      setIsEmailValid,
+      setPhoneStatus,
+      setIsPhoneValid,
+      setPasswordStatus,
+      setIsPasswordValid,
+    });
+  }, [username, email, phone, password]);
 
-        if (!isUsernameValid || !isEmailValid || !isPhoneValid || !isPasswordValid) {
-            toast.error("Please correct the form before submitting.");
-            return;
-        }
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
 
-        setIsLoading(true);
-        const formData = new FormData(e.currentTarget);
-
-        try {
-            const response = await submitRegistration(formData);
-            const result = await response?.json();
-
-            if (response?.ok && result.success) {
-                toast.success("Registration successful! Verification email sent.");
-                (e.target as HTMLFormElement).reset();
-                setUsername("");
-                setEmail("");
-                setPhone(undefined);
-                setPassword("");
-                setPosition("");
-                setCompany("");
-                setAddress("");
-                setNature("");
-
-                setUsernameStatus("");
-                setEmailStatus("");
-                setPhoneStatus("");
-                setPasswordStatus("");
-
-                setIsUsernameValid(false);
-                setIsEmailValid(false);
-                setIsPhoneValid(false);
-                setIsPasswordValid(false);
-                setTimeout(() => {
-                    window.location.href = result.redirectUrl;
-                }, 2000);
-            } else {
-                toast.error(result.message || "Registration failed.");
-            }
-        } catch (err) {
-            toast.error("Unable to connect to server.");
-        } finally {
-            setIsLoading(false);
-        }
+    if (
+      !isUsernameValid ||
+      !isEmailValid ||
+      !isPhoneValid ||
+      !isPasswordValid
+    ) {
+      toast.error("Please correct the form before submitting.");
+      return;
     }
 
-    return (
-        <section className="w-full min-h-screen flex items-center justify-center bg-white pt-20 pb-5">
-            <div className="w-[95%] sm:w-[500px] bg-accent/50 p-8 border border-accent/20">
-                <h2 className="text-2xl font-bold text-center text-primary mb-6">
-                    Create Account
-                </h2>
+    setIsLoading(true);
+    const formData = new FormData(e.currentTarget);
 
-                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                    {/* Username */}
-                    <div>
-                        <input
-                            type="text"
-                            name="username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value.trim())}
-                            placeholder="Enter your name"
-                            className="w-full px-4 py-2 border border-accent/30 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-accent"
-                            required
-                        />
-                        {usernameStatus && (
-                            <p
-                                className={`text-xs mt-1 ${usernameStatus.includes("taken") ? "text-red-500" : "text-green-500"
-                                    }`}
-                            >
-                                {usernameStatus}
-                            </p>
-                        )}
-                    </div>
+    try {
+      const response = await submitRegistration(formData);
+      const result = await response?.json();
 
-                    {/* Password */}
-                    <div>
-                        <div className="relative">
-                            <input
-                                type={showPassword ? "text" : "password"}
-                                name="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder="Enter your password"
-                                className="w-full px-4 py-2 border border-accent/30 rounded-md bg-white pr-12 focus:outline-none focus:ring-2 focus:ring-accent"
-                                required
-                            />
-                            <button
-                                type="button"
-                                onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-3 top-2 text-sm text-accent font-semibold"
-                            >
-                                {showPassword ? "Hide" : "Show"}
-                            </button>
-                        </div>
-                        {passwordStatus && (
-                            <p className="text-xs mt-1 text-red-500">{passwordStatus}</p>
-                        )}
-                    </div>
+      if (response?.ok && result.success) {
+        toast.success("Registration successful! Verification email sent.");
 
-                    {/* Email */}
-                    <div>
-                        <input
-                            type="email"
-                            name="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value.trim())}
-                            placeholder="Enter your email"
-                            className="w-full px-4 py-2 border border-accent/30 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-accent"
-                            required
-                        />
-                        {emailStatus && (
-                            <p
-                                className={`text-xs mt-1 ${emailStatus.includes("taken") ? "text-red-500" : "text-green-500"
-                                    }`}
-                            >
-                                {emailStatus}
-                            </p>
-                        )}
-                    </div>
+        (e.target as HTMLFormElement).reset();
 
-                    {/* Phone */}
-                    <div>
-                        <div className="bg-white rounded-md px-2 py-1 border border-accent/30">
-                            <PhoneInput
-                                international
-                                defaultCountry="NG"
-                                value={phone}
-                                onChange={setPhone}
-                                className="phone-input"
-                            />
-                        </div>
-                        {phoneStatus && (
-                            <p
-                                className={`text-xs mt-1 ${phoneStatus.includes("taken") ? "text-red-500" : "text-green-500"
-                                    }`}
-                            >
-                                {phoneStatus}
-                            </p>
-                        )}
-                    </div>
+        setUsername("");
+        setEmail("");
+        setPhone(undefined);
+        setPassword("");
+        setPosition("");
+        setCompany("");
+        setAddress("");
+        setNature("");
 
-                    {/* Extra fields */}
-                    <input
-                        type="text"
-                        name="position"
-                        value={position}
-                        onChange={(e) => setPosition(e.target.value)}
-                        placeholder="Position"
-                        className="w-full px-4 py-2 border border-accent/30 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-accent"
-                        required
-                    />
+        setUsernameStatus("");
+        setEmailStatus("");
+        setPhoneStatus("");
+        setPasswordStatus("");
 
-                    <input
-                        type="text"
-                        name="company"
-                        value={company}
-                        onChange={(e) => setCompany(e.target.value)}
-                        placeholder="Company"
-                        className="w-full px-4 py-2 border border-accent/30 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-accent"
-                        required
-                    />
+        setIsUsernameValid(false);
+        setIsEmailValid(false);
+        setIsPhoneValid(false);
+        setIsPasswordValid(false);
 
-                    <input
-                        type="text"
-                        name="address"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                        placeholder="Business Address"
-                        className="w-full px-4 py-2 border border-accent/30 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-accent"
-                        required
-                    />
+        setTimeout(() => {
+          window.location.href = result.redirectUrl;
+        }, 2000);
+      } else {
+        toast.error(result.message || "Registration failed.");
+      }
+    } catch (err) {
+      toast.error("Unable to connect to server.");
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
-                    <input
-                        type="text"
-                        name="nature"
-                        value={nature}
-                        onChange={(e) => setNature(e.target.value)}
-                        placeholder="Nature of Business"
-                        className="w-full px-4 py-2 border border-accent/30 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-accent"
-                        required
-                    />
+  return (
+    <section className="bg-white w-full min-h-screen px-5 py-10">
+      {/* Heading */}
+      <div className="bg-primary shadow-strong rounded-lg px-6 py-8 flex items-center justify-center">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-white text-center">
+          CREATE ACCOUNT
+        </h1>
+      </div>
 
-                    {/* Terms and Privacy */}
-                    <div className="space-y-2 mt-2">
-                        <label className="text-sm flex items-center gap-2">
-                            <input type="checkbox" required />
-                            I agree to the{" "}
-                            <span
-                                onClick={() => setShowTerms(true)}
-                                className="text-accent underline cursor-pointer"
-                            >
-                                Terms and Conditions
-                            </span>
-                        </label>
+      {/* Registration Form */}
+      <div className="w-full bg-accent/50 border border-accent/20 rounded-lg p-5 sm:p-6 mt-8">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          {/* Username */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Username
+            </label>
 
-                        <label className="text-sm flex items-center gap-2">
-                            <input type="checkbox" required />
-                            I agree to the{" "}
-                            <span
-                                onClick={() => setShowPrivacy(true)}
-                                className="text-accent underline cursor-pointer"
-                            >
-                                Privacy and Cookie Policy
-                            </span>
-                        </label>
-                    </div>
+            <input
+              type="text"
+              name="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value.trim())}
+              placeholder="e.g. johnsmith"
+              className="w-full px-4 py-3 border border-accent/30 rounded-md bg-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-accent"
+              required
+            />
 
-                    <button
-                        type="submit"
-                        disabled={isLoading}
-                        className="bg-accent text-white font-semibold py-2 rounded-md mt-4 hover:bg-accent/90 transition"
-                    >
-                        {isLoading ? "Signing up..." : "Sign Up"}
-                    </button>
-                </form>
+            {usernameStatus && (
+              <p
+                className={`text-xs mt-1 ${
+                  usernameStatus.includes("taken") || !isUsernameValid
+                    ? "text-red-500"
+                    : "text-green-500"
+                }`}
+              >
+                {usernameStatus}
+              </p>
+            )}
+          </div>
+
+          {/* Password */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Password
+            </label>
+
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter a secure password"
+                className="w-full px-4 py-3 border border-accent/30 rounded-md bg-white placeholder:text-gray-400 pr-16 focus:outline-none focus:ring-2 focus:ring-accent"
+                required
+              />
+
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-accent font-semibold"
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
             </div>
 
-            {/* Dialogs
-            <TermsPrivacyDialog
-                open={showTerms}
-                onClose={() => setShowTerms(false)}
-                docType="terms"
-                content={termsContent}
+            {passwordStatus && (
+              <p className="text-xs mt-1 text-red-500">{passwordStatus}</p>
+            )}
+          </div>
+
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email Address
+            </label>
+
+            <input
+              type="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value.trim())}
+              placeholder="e.g. john@example.com"
+              className="w-full px-4 py-3 border border-accent/30 rounded-md bg-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-accent"
+              required
             />
-            <TermsPrivacyDialog
-                open={showPrivacy}
-                onClose={() => setShowPrivacy(false)}
-                docType="privacy"
-                content={privacyContent}
-            /> */}
-        </section>
-    );
+
+            {emailStatus && (
+              <p
+                className={`text-xs mt-1 ${
+                  emailStatus.includes("taken") || !isEmailValid
+                    ? "text-red-500"
+                    : "text-green-500"
+                }`}
+              >
+                {emailStatus}
+              </p>
+            )}
+          </div>
+
+          {/* Phone */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Phone Number
+            </label>
+
+            <div className="bg-white rounded-md px-3 py-3 border border-accent/30">
+              <PhoneInput
+                international
+                defaultCountry="NG"
+                value={phone}
+                onChange={setPhone}
+                className="phone-input"
+                placeholder="e.g. 801 234 5678"
+              />
+            </div>
+
+            {phoneStatus && (
+              <p
+                className={`text-xs mt-1 ${
+                  phoneStatus.includes("taken") || !isPhoneValid
+                    ? "text-red-500"
+                    : "text-green-500"
+                }`}
+              >
+                {phoneStatus}
+              </p>
+            )}
+          </div>
+
+          {/* Position */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Position
+            </label>
+
+            <input
+              type="text"
+              name="position"
+              value={position}
+              onChange={(e) => setPosition(e.target.value)}
+              placeholder="e.g. Managing Director"
+              className="w-full px-4 py-3 border border-accent/30 rounded-md bg-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-accent"
+              required
+            />
+          </div>
+
+          {/* Company */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Company Name
+            </label>
+
+            <input
+              type="text"
+              name="company"
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              placeholder="e.g. ABC Technologies Ltd."
+              className="w-full px-4 py-3 border border-accent/30 rounded-md bg-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-accent"
+              required
+            />
+          </div>
+
+          {/* Business Address */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Business Address
+            </label>
+
+            <input
+              type="text"
+              name="address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="e.g. 15 Marina Road, Lagos"
+              className="w-full px-4 py-3 border border-accent/30 rounded-md bg-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-accent"
+              required
+            />
+          </div>
+
+          {/* Nature of Business */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Nature of Business
+            </label>
+
+            <input
+              type="text"
+              name="nature"
+              value={nature}
+              onChange={(e) => setNature(e.target.value)}
+              placeholder="e.g. Engineering and Construction"
+              className="w-full px-4 py-3 border border-accent/30 rounded-md bg-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-accent"
+              required
+            />
+          </div>
+
+          {/* Terms and Privacy */}
+          <div className="space-y-3 mt-2">
+            <label className="text-sm flex items-start gap-2">
+              <input type="checkbox" required className="mt-1 accent-primary" />
+
+              <span>I agree to the Terms and Conditions</span>
+            </label>
+
+            <label className="text-sm flex items-start gap-2">
+              <input type="checkbox" required className="mt-1 accent-primary" />
+
+              <span>I agree to the Privacy and Cookie Policy</span>
+            </label>
+          </div>
+
+          {/* <div className="space-y-3 mt-2">
+            <label className="text-sm flex items-start gap-2">
+              <input type="checkbox" required className="mt-1 accent-primary" />
+
+              <span>
+                I agree to the{" "}
+                <span
+                  onClick={() => setShowTerms(true)}
+                  className="text-accent underline cursor-pointer"
+                >
+                  Terms and Conditions
+                </span>
+              </span>
+            </label>
+
+            <label className="text-sm flex items-start gap-2">
+              <input type="checkbox" required className="mt-1 accent-primary" />
+
+              <span>
+                I agree to the{" "}
+                <span
+                  onClick={() => setShowPrivacy(true)}
+                  className="text-accent underline cursor-pointer"
+                >
+                  Privacy and Cookie Policy
+                </span>
+              </span>
+            </label>
+          </div> */}
+
+          {/* Submit */}
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="bg-primary text-white font-semibold py-3 rounded-md mt-3 hover:bg-primary/90 transition disabled:opacity-60"
+          >
+            {isLoading ? "Signing up..." : "Sign Up"}
+          </button>
+        </form>
+      </div>
+
+      {/* Dialogs
+      <TermsPrivacyDialog
+        open={showTerms}
+        onClose={() => setShowTerms(false)}
+        docType="terms"
+        content={termsContent}
+      />
+      <TermsPrivacyDialog
+        open={showPrivacy}
+        onClose={() => setShowPrivacy(false)}
+        docType="privacy"
+        content={privacyContent}
+      /> */}
+    </section>
+  );
 };
 
 export default MobRegisterCard;

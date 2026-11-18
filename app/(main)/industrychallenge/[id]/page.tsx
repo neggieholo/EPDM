@@ -5,19 +5,31 @@ import IndustryInfoDisplay from "@/app/LandingpageComponents/IndustryInfoDisplay
 import MobIndustryInfoDisplay from "@/app/LandingpageComponents/mobile/MobIndustryInfoDisplay";
 
 export default async function Page({ params }: { params: { id: string } }) {
-    const { id } = await params;
-    const headersList = await headers();
-    const userAgent = headersList.get("user-agent") || "";
-    const mobileCheck = isMobile(userAgent);
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  const { id } = await params;
+  const headersList = await headers();
+  const userAgent = headersList.get("user-agent") || "";
+  const mobileCheck = isMobile(userAgent);
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
-    const res = await fetch(`${baseUrl}/api/industrychallenge/${id}`, { cache: "no-store" });
-    
-    let industryChallenge = null;
-    if (res.ok) {
-        const data = await res.json();
-        industryChallenge = data.industryChallenge;
-    }
+  const res = await fetch(`${baseUrl}/api/industrychallenge/${id}`, {
+    cache: "no-store",
+  });
 
-    return mobileCheck ? <MobIndustryInfoDisplay content={industryChallenge}/> : <IndustryInfoDisplay content={industryChallenge}/>;
+  let industryChallenge = null;
+  if (res.ok) {
+    const data = await res.json();
+    industryChallenge = data.industryChallenge;
+  }
+
+  return mobileCheck ? (
+    <MobIndustryInfoDisplay
+      content={industryChallenge}
+      address="industrychallenge"
+    />
+  ) : (
+    <IndustryInfoDisplay
+      content={industryChallenge}
+      address="industrychallenge"
+    />
+  );
 }

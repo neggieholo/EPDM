@@ -34,7 +34,7 @@ export default function MobileNavbar() {
   };
 
   return (
-    <nav className="w-full max-w-full fixed top-0 left-0 bg-primary text-white shadow-md flex items-center justify-between px-2 z-50">
+    <nav className="relative w-full max-w-full bg-primary text-white shadow-md flex items-center justify-between px-2 z-50">
       {/* Logo + Brand Name */}
       <div className="flex items-center gap-2 min-w-0 flex-1 pr-2">
         <div className="relative w-14 h-14 shrink-0">

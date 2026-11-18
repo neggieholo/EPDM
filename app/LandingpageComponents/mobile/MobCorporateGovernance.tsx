@@ -1,5 +1,4 @@
 import React from "react";
-import { ShieldCheck, Database, FileText, Cpu, Users } from "lucide-react";
 
 const MobCorporateGovernance: React.FC = () => {
   const points = [
@@ -12,7 +11,10 @@ const MobCorporateGovernance: React.FC = () => {
       title: "Ethical AI Practices",
       desc: "Responsible use of AI in analytics.",
     },
-    { title: "Board Oversight", desc: "Strategic supervision of performance." },
+    {
+      title: "Board Oversight",
+      desc: "Strategic supervision of performance.",
+    },
     {
       title: "Stakeholder Engagement",
       desc: "Regular reporting to the energy community.",
@@ -20,26 +22,37 @@ const MobCorporateGovernance: React.FC = () => {
   ];
 
   return (
-    <section className="bg-white py-16 px-6">
-      <div className="bg-primary p-6 rounded-t-xl mb-8">
-        <h2 className="text-3xl font-black text-white text-center">
-          CORPORATE GOVERNANCE
-        </h2>
-      </div>
+    <section className="bg-white w-full px-5 py-10">
+      <div className="w-full flex flex-col gap-6">
+        {/* TOP: CORPORATE GOVERNANCE HEADING */}
+        <div className="w-full bg-primary shadow-strong rounded-lg px-6 py-8 flex items-center justify-center">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight text-center">
+            CORPORATE
+            <br />
+            GOVERNANCE
+          </h2>
+        </div>
 
-      <div className="text-primary">
-        <p className="text-lg text-gray-700 mb-8 text-center px-2">
-          Strong corporate governance is our foundation for accountability,
-          transparency, and ethical leadership.
-        </p>
+        {/* CORPORATE GOVERNANCE CONTENT */}
+        <div className="w-full flex flex-col text-primary p-4">
+          {/* INTRODUCTION */}
+          <p className="text-base text-gray-700 mb-8 text-center">
+            Strong corporate governance is our foundation for accountability,
+            transparency, and ethical leadership.
+          </p>
 
-        <div className="space-y-6">
-          {points.map((point, idx) => (
-            <div key={idx} className="border-l-4 border-primary pl-4 py-1">
-              <h4 className="text-lg font-bold">{point.title}</h4>
-              <p className="text-gray-600 text-sm">{point.desc}</p>
-            </div>
-          ))}
+          {/* GOVERNANCE POINTS */}
+          <div className="flex flex-col gap-6">
+            {points.map((point, idx) => (
+              <div key={idx} className="border-l-4 border-primary pl-4 py-1">
+                <h4 className="text-lg font-bold mb-1">{point.title}</h4>
+
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {point.desc}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

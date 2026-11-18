@@ -12,7 +12,7 @@ export const industryResourcesItems = [
   {
     heading: "Tender Opportunities",
     description: "Access upcoming & current industry tenders",
-    href: "/tender-opportunities",
+    href: "/tender_opportunity",
   },
   {
     heading: "Industry Reports",

@@ -1,4 +1,5 @@
-'use client';
+"use client";
+
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { IndustryInfoProps } from "../IndustryInfoDisplay";
@@ -25,12 +26,24 @@ const MobIndustryInfoDisplay: React.FC<IndustryInfoProps> = ({
   address,
 }) => {
   const router = useRouter();
+
   if (!content) {
     return (
-      <section className="min-h-[80vh] flex items-center justify-center bg-white px-4">
-        <p className="text-center text-gray-500 text-base">
-          No industry information available.
-        </p>
+      <section className="bg-white w-full px-5 py-10 min-h-screen">
+        {/* Header */}
+        <div className="bg-primary shadow-strong rounded-lg px-6 py-8 flex items-center justify-center">
+          <h2 className="text-4xl font-extrabold text-white text-center leading-tight">
+            INDUSTRY
+            <br />
+            INFORMATION
+          </h2>
+        </div>
+
+        <div className="min-h-[40vh] flex items-center justify-center">
+          <p className="text-center text-gray-500 text-base">
+            No industry information available.
+          </p>
+        </div>
       </section>
     );
   }
@@ -39,17 +52,35 @@ const MobIndustryInfoDisplay: React.FC<IndustryInfoProps> = ({
   const otherSections = content.sections.filter((s) => s.type !== "pdf");
 
   return (
-    <section className="w-full bg-white min-h-screen flex justify-center pt-6 px-4">
-      <div className="bg-white w-full max-w-md flex flex-col gap-4">
-        <div
-          className="flex items-center gap-2 cursor-pointer"
-          onClick={() => router.push(`/${address}`)}
-        >
-          <ArrowBigLeft /> Back to List
-        </div>
-        <h2 className="text-2xl font-bold text-center">{content.heading}</h2>
+    <section className="bg-white w-full px-5 py-10 min-h-screen">
+      {/* Page Header */}
+      <div className="bg-primary shadow-strong rounded-lg px-6 py-8 flex items-center justify-center">
+        <h2 className="text-4xl font-extrabold text-white text-center leading-tight">
+          INDUSTRY
+          <br />
+          INFORMATION
+        </h2>
+      </div>
 
-        <div className="flex flex-col gap-4">
+      {/* Content */}
+      <div className="w-full flex flex-col gap-6 mt-8">
+        {/* Back Navigation */}
+        <button
+          type="button"
+          onClick={() => router.push(`/${address}`)}
+          className="flex items-center gap-2 text-primary hover:opacity-75 transition w-fit"
+        >
+          <ArrowBigLeft size={22} />
+          <span className="font-medium">Back to List</span>
+        </button>
+
+        {/* Industry Information Heading */}
+        <h2 className="text-2xl font-bold text-gray-900 text-center">
+          {content.heading}
+        </h2>
+
+        {/* Industry Sections */}
+        <div className="flex flex-col gap-5">
           {otherSections.map((section) => {
             switch (section.type) {
               case "image":
@@ -63,13 +94,15 @@ const MobIndustryInfoDisplay: React.FC<IndustryInfoProps> = ({
                       alt={section.caption || ""}
                       className="w-full max-h-75 h-auto rounded-md shadow-md object-cover"
                     />
+
                     {section.caption && (
-                      <p className="mt-1 text-sm text-gray-500 italic text-center">
+                      <p className="mt-2 text-sm text-gray-500 italic text-center">
                         {section.caption}
                       </p>
                     )}
                   </div>
                 );
+
               case "video":
                 return (
                   <div
@@ -81,36 +114,32 @@ const MobIndustryInfoDisplay: React.FC<IndustryInfoProps> = ({
                       controls
                       className="w-full max-h-[300px] rounded-md shadow-md"
                     />
+
                     {section.caption && (
-                      <p className="mt-1 text-sm text-gray-500 italic text-center">
+                      <p className="mt-2 text-sm text-gray-500 italic text-center">
                         {section.caption}
                       </p>
                     )}
                   </div>
                 );
+
               case "paragraph":
                 return (
-                  <p
+                  <div
                     key={section._id}
                     className="text-gray-700 text-sm leading-relaxed"
                     dangerouslySetInnerHTML={{ __html: section.content }}
                   />
                 );
+
               default:
                 return null;
             }
           })}
 
+          {/* PDF Download */}
           {pdfSection && (
-            <div
-              style={{
-                marginTop: "15px",
-                padding: "10px",
-                backgroundColor: "#f2f2f2",
-                borderRadius: "6px",
-                textAlign: "center",
-              }}
-            >
+            <div className="mt-2 p-4 bg-accent/50 border border-accent/20 rounded-lg">
               <a
                 href={pdfSection.content}
                 className="btn btn-primary w-full"

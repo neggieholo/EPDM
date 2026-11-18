@@ -31,24 +31,21 @@ const CorporateGovernance: React.FC = () => {
   ];
 
   return (
-    <section className="flex justify-center bg-white items-center min-h-[80vh] py-8">
-      <div className="w-[70%] flex justify-center px-5 bg-white gap-5">
-        {/* LEFT: Branding Block (Matching AboutUs style) */}
-        <div className="w-fit h-fit text-start relative flex items-center justify-center gap-4 rounded-l-xl">
-          <div className="flex flex-col justify-evenly shadow-strong bg-primary items-center p-8 min-w-70">
-            <h2 className="text-5xl font-extrabold text-white leading-tight">
-              CORPORATE
-            </h2>
-            <h2 className="text-5xl font-extrabold text-white leading-tight">
-              GOVERNANCE
-            </h2>
-          </div>
+    <section className="w-full bg-white py-12 md:py-16 px-5 items-start justify-center min-h-[70vh] flex">
+      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-stretch justify-center gap-6 md:gap-10">
+        {/* LEFT: Heading Section */}
+        <div className="flex items-center justify-center bg-primary shadow-strong rounded-lg px-6 py-8 md:px-8 shrink-0">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight text-center sm:text-left">
+            CORPORATE
+            <br />
+            GOVERNANCE
+          </h2>
         </div>
 
-        {/* RIGHT: Text Content */}
-        <div className="flex-1 flex flex-col justify-center text-primary">
+        {/* RIGHT: Governance Content */}
+        <div className="flex-1 min-w-0 flex flex-col justify-center py-4 sm:py-6">
           <div className="mb-8">
-            <p className="text-xl font-medium leading-relaxed text-gray-700">
+            <p className="text-sm md:text-base font-medium leading-relaxed text-gray-700">
               At EPDM, we believe that strong corporate governance is the
               foundation of sustainable energy innovation. Our governance
               structure ensures accountability, transparency, and ethical
@@ -56,15 +53,18 @@ const CorporateGovernance: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6">
+          <div className="flex flex-col gap-5 text-primary">
             {points.map((point, idx) => (
-              <div key={idx} className="flex items-start gap-4 group">
-                <div className="bg-primary/10 p-2 rounded-lg text-primary transition-colors group-hover:bg-primary group-hover:text-white">
+              <div key={idx} className="flex items-start gap-3">
+                <div className="bg-primary/10 p-2 rounded-lg text-primary shrink-0 transition-colors">
                   {point.icon}
                 </div>
-                <div>
+
+                <div className="min-w-0">
                   <h4 className="text-lg font-bold">{point.title}</h4>
-                  <p className="text-gray-600">{point.desc}</p>
+                  <p className="text-sm md:text-base leading-relaxed text-gray-600">
+                    {point.desc}
+                  </p>
                 </div>
               </div>
             ))}

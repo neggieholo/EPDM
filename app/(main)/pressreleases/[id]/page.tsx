@@ -12,21 +12,22 @@ export default async function Page({ params }: { params: { id: string } }) {
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
-    let interview = null;
+    let newsItem = null;
 
     try {
-        const res = await fetch(`${baseUrl}/api/project_interview/${id}`, {
+        const res = await fetch(`${baseUrl}/api/news/${id}`, {
           method: "GET",
           cache: "no-store",
         });
 
         if (res.ok) {
             const data = await res.json();
-            interview = data.interview || null;
+            newsItem = data.news || null;
+            console.log("Fetched news item:", newsItem);
         }
     } catch (err) {
-        console.error("Failed to fetch About Us:", err);
+        console.error("Failed to fetch news item:", err);
     }
 
-    return mobileCheck ? <MobNewsDisplay newsItem={interview} /> : <NewsDisplay newsItem={interview} />;
+    return mobileCheck ? <MobNewsDisplay newsItem={newsItem} /> : <NewsDisplay newsItem={newsItem} />;
 }

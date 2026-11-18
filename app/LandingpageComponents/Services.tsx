@@ -1,60 +1,59 @@
 import React from "react";
 
 interface ServiceItem {
-    text: string;
+  text: string;
 }
 
 interface ServiceSection {
-    heading: string;
-    items: ServiceItem[];
+  heading: string;
+  items: ServiceItem[];
 }
 
 interface ServicesProps {
-    serviceData: ServiceSection | null;
+  serviceData: ServiceSection | null;
 }
 
 const Services: React.FC<ServicesProps> = ({ serviceData }) => {
-    
+  return (
+    <section className="w-full bg-white py-12 md:py-16 px-5 items-start justify-center min-h-[70vh] flex">
+      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-stretch justify-center gap-6 md:gap-10">
+        {/* LEFT: Heading Section */}
+        <div className="flex items-center justify-center bg-primary shadow-strong rounded-lg px-6 py-8 md:px-8 shrink-0">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight text-center sm:text-left">
+            OUR
+            <br />
+            SERVICES
+          </h2>
+        </div>
 
-    return (
-        <section>
-            <div className="flex justify-center bg-white items-center">
-                <div className="w-[70%] flex justify-center h-screen px-5 bg-white">
+        {/* RIGHT: Dynamic Services List */}
+        <div className="flex-1 min-w-0 flex flex-col justify-center py-4 sm:py-6">
+          {serviceData ? (
+            <div className="flex flex-col gap-5 text-primary">
+              <h3 className="text-xl md:text-2xl font-bold">
+                {serviceData.heading}
+              </h3>
 
-                    {/* 🩵 LEFT: Heading Section */}
-                    <div className="w-fit h-full text-start relative flex items-center justify-center gap-4 p-4 rounded-l-xl">
-                        <div className="flex flex-col justify-evenly shadow-strong bg-primary items-center h-[80%] p-5">
-                            <h2 className="text-7xl font-extrabold mb-2 text-white leading-tight">
-                                OUR
-                            </h2>
-                            <h2 className="text-7xl font-extrabold mb-2 text-white leading-tight">
-                                SERVICES
-                            </h2>
-                        </div>
-                    </div>
+              <ul className="grid grid-cols-1 gap-x-8 gap-y-3">
+                {serviceData.items.map((item, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-3 text-sm md:text-base leading-relaxed"
+                  >
+                    <span className="text-primary font-bold shrink-0">✓</span>
 
-                    {/* 🩶 RIGHT: Dynamic Services List */}
-                    <div className="w-fit h-full flex flex-col items-center justify-center text-primary p-5">
-                        {serviceData ? (
-                            <div className="flex flex-col gap-5 text-start">
-                                <h3 className="text-2xl font-semibold mb-2">{serviceData.heading}</h3>
-                                <ul className="list-disc list-inside space-y-1">
-                                    {serviceData.items.map((item, i) => (
-                                        <li key={i} className="text-md leading-relaxed">
-                                            {item.text}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ) : (
-                            <p className="text-gray-300">No services available.</p>
-                        )}
-                    </div>
-
-                </div>
+                    <span>{item.text}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-        </section>
-    );
+          ) : (
+            <p className="text-gray-400">No services available.</p>
+          )}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Services;
