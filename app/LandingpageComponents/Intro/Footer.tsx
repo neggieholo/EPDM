@@ -90,7 +90,7 @@ const Footer = async () => {
               </Link>
             </li>
             <li>
-              <Link href="#" className="hover:text-blue-400">
+              <Link href="/careers" className="hover:text-blue-400">
                 Careers
               </Link>
             </li>
