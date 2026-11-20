@@ -14,25 +14,24 @@ export default async function ProjectLayout({ children }: ProjectLayoutProps) {
     const mobileCheck = isMobile(userAgent);
 
     return (
-        <div className="h-screen w-full flex flex-col relative pb-6 text-primary">
+      <div className="h-screen w-full flex flex-col relative pb-6 text-primary">
 
-            {/* FIXED HEADER */}
-            <h1 className="text-xl font-bold py-4 px-6 shadow z-10 text-primary/50">
-                Details
-            </h1>
+        <div className="flex justify-between items-center">
+          <h1 className="text-xl font-bold py-4 px-6 shadow z-10 text-primary/50">
+            Details
+          </h1>
 
-            <nav className="navbar flex justify-end bg-none px-6">
-                <div className="flex justify-end w-full">
-                    <BackButton />
-                </div>
-            </nav>
-
-            {/* SCROLLABLE AREA */}
-            <div className="flex-1 overflow-y-auto p-2 pb-10">
-                <div className="rounded-md p-1 sm:p-5 text-primary">
-                    {children}
-                </div>
+          <nav className="navbar flex justify-end bg-none px-6">
+            <div className="flex justify-end w-full">
+              <BackButton />
             </div>
+          </nav>
         </div>
+
+        {/* SCROLLABLE AREA */}
+        <div className="flex-1 overflow-y-auto p-2 pb-10">
+          <div className="rounded-md p-1 sm:p-5 text-primary">{children}</div>
+        </div>
+      </div>
     );
 }

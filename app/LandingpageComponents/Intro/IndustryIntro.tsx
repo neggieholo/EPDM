@@ -1,14 +1,26 @@
-'use client'
+"use client";
 
-import React, { useState } from 'react'
-import { industrySections } from '../../utils/LandingPageSections'
+import React, { useState } from "react";
+import { industrySections } from "../../utils/LandingPageSections";
+import { AdItem, AdSlot } from "../AdItem";
 
-const IndustryIntro = () => {
-    const [activeIndex, setActiveIndex] = useState(0);
-    return (
-      <section className="w-full h-fit bg-white shadow-md rounded-lg flex flex-col overflow-y-hidden border border-accent/20">
-        <div className="w-full bg-accent/20 h-full">
-          <div className="w-[70%] h-full mx-auto bg-white flex flex-col justify-center p-5">
+interface IndustryIntroProps {
+  ads?: AdItem[];
+}
+
+const IndustryIntro = ({ ads = [] }: IndustryIntroProps) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const hasSideAd = Array.isArray(ads) && ads.length > 0;
+
+  return (
+    <section className="w-full h-fit bg-white shadow-md rounded-lg flex flex-col border border-accent/20">
+      <div className="w-full bg-accent/20 h-full">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-[1fr_60%_1fr] items-start gap-6 px-4 lg:px-0">
+          {/* Left Gutter (empty) */}
+          <div className="hidden lg:block" />
+
+          {/* Middle Column: Permanently 60% width, always centered */}
+          <div className="w-full h-full bg-white flex flex-col justify-center p-5">
             <h2 className="text-2xl md:text-3xl font-bold text-primary mb-2 border-b border-accent pb-2">
               Connect with Industry Resources & Showcase
             </h2>
@@ -24,8 +36,8 @@ const IndustryIntro = () => {
                     key={i}
                     onClick={() => setActiveIndex(i)}
                     className={`relative px-6 py-4 m-1 font-semibold text-white transition-all duration-300
-                                    ${activeIndex === i ? "bg-primary" : "bg-primary/70 hover:bg-primary"}
-                                    [clip-path:polygon(10%_0%,100%_0%,90%_100%,0%_100%)]`}
+                      ${activeIndex === i ? "bg-primary" : "bg-primary/70 hover:bg-primary"}
+                      [clip-path:polygon(10%_0%,100%_0%,90%_100%,0%_100%)]`}
                   >
                     {s.title.split(" (")[0]}
                   </button>
@@ -43,9 +55,23 @@ const IndustryIntro = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    );
-}
 
-export default IndustryIntro
+          {/* Right Gutter: Sticky Ad Rail (only renders if ads exist) */}
+          <div className="w-full lg:px-4 lg:sticky lg:top-24">
+            {hasSideAd && (
+              <aside className="w-full py-4 lg:py-0">
+                <AdSlot
+                  ads={ads}
+                  slot="industry_side"
+                  imgClassName="w-full h-56 sm:h-64 lg:h-[480px] object-contain"
+                />
+              </aside>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default IndustryIntro;

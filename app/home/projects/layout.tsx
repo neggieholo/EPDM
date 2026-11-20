@@ -9,12 +9,12 @@ interface ProjectLayoutProps {
 export default async function ProjectLayout({ children }: ProjectLayoutProps) {
     const headersList = await headers();
     const userAgent = headersList.get("user-agent") || "";
-    const mobileCheck = isMobile(userAgent);
+    const mobileCheck = true;
 
     return mobileCheck ? (
       <div className="h-screen w-full flex flex-col relative pb-12">
         {/* FIXED HEADER */}
-        <h1 className="text-3xl font-bold pt-10 shadow z-10 text-primary">
+        <h1 className="text-3xl font-bold shadow z-10 text-primary">
           Projects
         </h1>
 

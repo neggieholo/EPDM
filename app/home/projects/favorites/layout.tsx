@@ -15,7 +15,7 @@ export default async function ProjectLayout({ children }: ProjectLayoutProps) {
   return mobileCheck ? (
     <div className="h-screen w-full flex flex-col relative pb-12">
       {/* FIXED HEADER */}
-      <h1 className="text-xl p-1 flex items-center shadow z-10 text-primary/50">
+      <h1 className="text-xl font-bold py-4 px-6 shadow z-10 text-primary/50">
         Favourites
       </h1>
 

@@ -30,41 +30,41 @@ export default function MobileNavbar() {
   };
 
   return (
-    <nav className="w-full fixed top-0 left-0 bg-primary text-white shadow-md flex justify-between items-center z-50">
-      {/* Logo */}
-      <div className="absolute w-[10%] h-full">
-        <Image
-          src="/epdm_logo.png"
-          alt="EPDM Logo"
-          fill
-          className="object-cover"
-        />
-      </div>
-
-      {/* Header Text + Icons */}
-      <div className="flex items-center justify-end gap-2 h-full w-full bg-primary">
-        <div className="w-[90%] flex justify-between p-2">
-          <div className="flex flex-col text-sm">
-            <span className="font-bold text-white">
-              ENERGY PROJECTS DATA MEDIA LTD.
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button className="text-white text-2xl border-l border-white/50 pl-2">
-              <HiOutlineSearch />
-            </button>
-
-            <button
-              onClick={() => setMenuOpen((prev) => !prev)}
-              className="text-white text-2xl border-l border-r border-white/50 pl-2 ml-2"
-            >
-              {menuOpen ? <HiX /> : <HiMenu />}
-            </button>
-          </div>
+    <nav className="w-full h-14 sticky top-0 bg-primary text-white shadow-md flex items-center justify-between px-3 z-50">
+      {/* Left: Logo + Title */}
+      <div className="flex items-center gap-2 min-w-0">
+        <div className="relative w-8 h-8 shrink-0">
+          <Image
+            src="/epdm_logo.png"
+            alt="EPDM Logo"
+            fill
+            className="object-contain"
+          />
         </div>
+        <span className="font-bold text-xs sm:text-sm text-white truncate">
+          ENERGY PROJECTS DATA MEDIA LTD.
+        </span>
       </div>
 
+      {/* Right: Search & Menu */}
+      <div className="flex items-center gap-2 shrink-0">
+        <button
+          type="button"
+          className="text-white text-xl border-l border-white/50 pl-2"
+          aria-label="Search"
+        >
+          <HiOutlineSearch />
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setMenuOpen((prev) => !prev)}
+          className="text-white text-xl border-l border-white/50 pl-2"
+          aria-label="Toggle Menu"
+        >
+          {menuOpen ? <HiX /> : <HiMenu />}
+        </button>
+      </div>
       {/* Mobile Menu Dropdown */}
       {menuOpen && (
         <div className="absolute top-full left-0 w-full bg-white text-primary shadow-md flex flex-col z-40">
@@ -122,7 +122,7 @@ export default function MobileNavbar() {
               )}
             </div>
           ))}
-          <MobSocketProvider />
+          {/* <MobSocketProvider /> */}
         </div>
       )}
     </nav>

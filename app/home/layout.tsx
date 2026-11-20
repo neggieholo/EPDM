@@ -16,39 +16,39 @@ interface HomeLayoutProps {
 export default async function HomeLayout({ children }: HomeLayoutProps) {
     const headersList = await headers();
     const userAgent = headersList.get("user-agent") || "";
-    const mobileCheck = isMobile(userAgent);
+    const mobileCheck = true;
 
     return (
-        <ProfileProvider>
-            {!mobileCheck ? (
-                // ✅ Desktop layout
-                <div className="flex h-screen bg-base-200 overflow-hidden">
-                    {/* Sidebar */}
-                    <SideBar />
+      <ProfileProvider>
+        {!mobileCheck ? (
+          // ✅ Desktop layout
+          <div className="flex h-screen bg-base-200 overflow-hidden">
+            {/* Sidebar */}
+            <SideBar />
 
-                    {/* Main content */}
-                    <div className="flex flex-col flex-1">
-                        <TopBar />
+            {/* Main content */}
+            <div className="flex flex-col flex-1">
+              <TopBar />
 
-                        <main className="flex-1 p-6 space-y-6 bg-white relative overflow-y-auto">
-                            {children}
-                            {/* <SocketProvider /> */}
-                        </main>
-                    </div>
-                </div>
-            ) : (
-                // ✅ Mobile layout
-                <div className="min-h-screen flex flex-col relative bg-base-100">
-                    <MobTopBar />
+              <main className="flex-1 p-6 space-y-6 bg-white relative overflow-y-auto">
+                {children}
+                {/* <SocketProvider /> */}
+              </main>
+            </div>
+          </div>
+        ) : (
+          // ✅ Mobile layout
+          <div className="min-h-screen w-full overflow-x-hidden flex flex-col relative bg-base-100">
+            <MobTopBar />
 
-                    <main className="flex-1 p-4 space-y-5 pb-24 relative ovr">
-                        {children}
-                        {/* <SocketProvider /> */}
-                    </main>
+            <main className="flex-1 min-w-0 w-full p-4 space-y-5 pb-24 relative">
+              {children}
+              {/* <SocketProvider /> */}
+            </main>
 
-                    <MobBottomNav />
-                </div>
-            )}
-        </ProfileProvider>
+            <MobBottomNav />
+          </div>
+        )}
+      </ProfileProvider>
     );
 }

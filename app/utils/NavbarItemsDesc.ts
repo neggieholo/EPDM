@@ -6,7 +6,8 @@ export const industryResourcesItems = [
   },
   {
     heading: "Project Leadership Spotlight",
-    description: "Exclusive interviews  with project managers.",
+    description:
+      "Exclusive interviews with Project Managers & Project Directors behind landmark projects.",
     href: "/project-spotlight",
   },
   {
